@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mai Việt Taekwondo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
+        body { font-family: 'Lexend', sans-serif; background-color: #f8fafc; }
+        .active-menu { background: #dc2626 !important; color: white !important; font-weight: 700; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
+        .sidebar { background-color: #0f172a; transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- LOGIN INTERFACE -->
+    <div id="login-box" class="min-h-screen flex items-center justify-center p-4 bg-slate-100">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
+            <div class="p-8 text-center bg-slate-900 text-white">
+                <h1 class="text-2xl font-bold tracking-tighter text-red-500 uppercase">Mai Việt Taekwondo</h1>
+                <p class="text-slate-400 text-xs mt-1">Cổng thông tin võ sinh trực tuyến</p>
+            </div>
+            <div class="p-8 space-y-5">
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase ml-1">Tên đăng nhập</label>
+                    <input type="text" id="u" class="w-full mt-1 p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500 transition">
+                </div>
+
+                <div>
+                <label class="text-xs font-bold text-slate-500 uppercase ml-1">Mật khẩu</label>
+                <div class="relative">
+                    <input type="password" id="p" class="w-full mt-1 p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500 transition pr-12">
+                    <!-- Biểu tượng con mắt -->
+                    <button type="button" onclick="togglePassword()" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500 transition">
+                        <i id="eye-icon" class="fas fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+
+
+                <!--
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase ml-1">Mật khẩu</label>
+                    <input type="password" id="p" class="w-full mt-1 p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500 transition">
+                    <button type="button" onclick="togglePassword()" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500 transition">
+                    <i id="eye-icon" class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                -->
+                <button onclick="doLogin()" class="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 shadow-lg shadow-red-200 transition-all active:scale-95">ĐĂNG NHẬP</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DASHBOARD INTERFACE -->
+    <div id="main-app" class="hidden min-h-screen flex flex-col lg:flex-row">
+        <!-- Sidebar[cite: 2] -->
+        <aside class="sidebar w-full lg:w-72 text-slate-300 lg:min-h-screen p-6 flex flex-col">
+            <div class="mb-10 flex items-center space-x-3 px-2">
+                <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center font-bold text-white italic">MV</div>
+                <div>
+                    <h2 class="font-bold text-white tracking-tight uppercase leading-none">Mai Việt TKD</h2>
+                    <span id="user-role" class="text-[10px] text-red-500 font-bold tracking-widest uppercase"></span>
+                </div>
+            </div>
+            
+            <nav class="flex-1 space-y-2">
+                <button onclick="load('LICHHOC', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center active-menu">
+                    <i class="fas fa-calendar-alt w-8 text-lg"></i> LỊCH HỌC
+                </button>
+                <button onclick="load('HOCPHI', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-credit-card w-8 text-lg"></i> HỌC PHÍ
+                </button>
+                <button onclick="load('DONDANGKY', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-file-contract w-8 text-lg"></i> ĐƠN ĐĂNG KÝ
+                </button>
+                <button onclick="load('DON', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-paper-plane w-8 text-lg"></i> ĐƠN XIN PHÉP
+                </button>
+                <button onclick="load('CAPDAI', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-award w-8 text-lg"></i> CẤP ĐAI
+                </button>
+            </nav>
+
+            <div class="pt-6 border-t border-slate-800 mt-6 space-y-3">
+                <div class="px-4 py-3 bg-slate-800/50 rounded-2xl">
+                    <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Đang đăng nhập</div>
+                    <div id="user-fullname" class="text-white font-bold truncate"></div>
+                </div>
+                <button onclick="changePass()" class="w-full text-left p-4 rounded-xl text-yellow-500 hover:bg-yellow-500/10 transition flex items-center">
+                    <i class="fas fa-key w-8"></i> ĐỔI MẬT KHẨU
+                </button>
+                <button onclick="location.reload()" class="w-full text-left p-4 rounded-xl text-red-400 hover:bg-red-400/10 transition flex items-center">
+                    <i class="fas fa-sign-out-alt w-8"></i> ĐĂNG XUẤT
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-10">
+            <div id="content-view" class="bg-white rounded-[2rem] shadow-sm p-8 min-h-full border border-slate-100">
+                <!-- Data will load here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // QUAN TRỌNG: Thay URL dưới đây bằng URL Web App của bạn[cite: 1]
+        const API = "https://script.google.com/macros/s/AKfycbwk-b3tdrJXX4JFYbfmi5Le8lB9MFhabXmaUDEhf4Mq0_9_LXULr4Mi1mU9k7xkx_NU/exec";
+        let USER = { id: '', name: '', role: '' };
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('p');
+            const eyeIcon = document.getElementById('eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                // Hiện mật khẩu
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                // Ẩn mật khẩu
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+        
+        async function doLogin() {
+            const user = document.getElementById('u').value.trim();
+            const pass = document.getElementById('p').value;
+            
+            if(!user || !pass) return Swal.fire("Chú ý", "Hãy nhập tài khoản và mật khẩu", "warning");
+            
+            Swal.showLoading();
+            const res = await fetch(API, { method: 'POST', body: JSON.stringify({ action: 'login', data: { user, pass } }) }).then(r => r.json());
+            
+            if(res.status === 'success') {
+                USER = { id: res.user, name: res.fullname, role: res.role };
+                document.getElementById('login-box').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+                document.getElementById('user-fullname').innerText = USER.name;
+                document.getElementById('user-role').innerText = USER.role;
+                load('LICHHOC');
+                Swal.close();
+            } else {
+                Swal.fire("Lỗi", res.msg, "error");
+            }
+        }
+
+        async function load(sheet, btn) {
+            if(btn) {
+                document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active-menu'));
+                btn.classList.add('active-menu');
+            }
+            
+            const area = document.getElementById('content-view');
+            area.innerHTML = `<div class="flex flex-col items-center justify-center py-32 space-y-4">
+                                <div class="w-12 h-12 border-4 border-red-200 border-t-red-600 rounded-full animate-spin"></div>
+                                <p class="text-slate-400 font-medium animate-pulse">Đang truy xuất dữ liệu ${sheet}...</p>
+                              </div>`;
+
+            const data = await fetch(API, { method: 'POST', body: JSON.stringify({ action: 'getData', data: { user: USER.id, sheetName: sheet } }) }).then(r => r.json());
+
+
+            // 1. Tạo một bảng danh mục tên hiển thị đẹp hơn
+            const displayNames = {
+                'LICHHOC': 'LỊCH HỌC',
+                'HOCPHI': 'THÔNG TIN HỌC PHÍ',
+                'DONDANGKY': 'ĐƠN ĐĂNG KÝ LUYỆN TẬP',
+                'DON': 'ĐƠN XIN PHÉP VÀ KHÁC',
+                'CAPDAI': 'HỒ SƠ CẤP ĐAI'
+            };
+
+            // 2. Lấy tên hiển thị dựa trên tên sheet
+            const currentTitle = displayNames[sheet] || sheet;
+
+            // 3. Đoạn mã HTML tiêu đề với CSS co giãn
+            let html = `
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                    <div class="w-full">
+                        <h2 class="font-black text-slate-800 uppercase tracking-tighter leading-none" 
+                            style="font-size: clamp(1.2rem, 6vw, 2.5rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            ${currentTitle}
+                        </h2>
+                        <p class="text-slate-500 text-[10px] mt-1 font-bold uppercase tracking-widest">
+                            Hệ thống quản lý võ sinh
+                        </p>
+                    </div>
+                    ${sheet === 'DON' ? `
+                        <button onclick="openFormDon()" class="whitespace-nowrap w-full md:w-auto bg-red-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-red-700 shadow-lg transition-all active:scale-95">
+                            <i class="fas fa-plus mr-2"></i>GỬI ĐƠN MỚI
+                        </button>` : ''}
+                </div>`;
+            /*
+            // 2. Sử dụng tên hiển thị trong tiêu đề
+            let html = `<div class="flex justify-between items-center mb-10">
+                            <h2 class="text-3xl font-black text-slate-800 tracking-tight uppercase">
+                                ${displayNames[sheet] || sheet}
+                            </h2>
+                            ${sheet === 'DON' ? `<button onclick="sendDon()" class="bg-red-600 text-white px-6 py-3 rounded-2xl font-bold hover:scale-105 transition">+ GỬI ĐƠN MỚI</button>` : ''}
+                        </div>`;
+
+            */
+
+            if (!data || data.length === 0) {
+                html += `<div class="py-20 text-center"><i class="fas fa-box-open text-6xl text-slate-200 mb-4"></i><p class="text-slate-400 italic">Không tìm thấy dữ liệu nào cho tài khoản này.</p></div>`;
+            } else {
+                if (sheet === 'HOCPHI' || sheet === 'LICHHOC') {
+                    html += `<div class="overflow-x-auto"><table class="w-full text-left">
+                        <thead class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-widest">
+                            <tr>`;
+                    Object.keys(data[0]).forEach(k => { if(k !== 'User') html += `<th class="p-5">${k}</th>` });
+                    html += `</tr></thead><tbody class="divide-y">`;
+                    data.forEach(r => {
+                        html += `<tr class="hover:bg-slate-50/50 transition">`;
+                        Object.keys(r).forEach(k => {
+                            if(k === 'User') return;
+                            let val = r[k];
+                            // Tự động nhận diện link[cite: 2]
+                            if(String(val).startsWith('http')) {
+                                val = `<a href="${val}" target="_blank" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-[10px] font-bold hover:bg-red-600 transition uppercase">Mở liên kết</a>`;
+                            } else if(k.includes('Tien') || k.includes('tiền')) {
+                                val = `<span class="font-bold text-red-600">${Number(val).toLocaleString()}đ</span>`;
+                            } else if(val === 'Đã đóng học phí' || val === 'Đã đóng') {
+                                val = `<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase">${val}</span>`;
+                            }
+                            html += `<td class="p-5 text-sm">${val}</td>`;
+                        });
+                        html += `</tr>`;
+                    });
+                    html += `</tbody></table></div>`;
+                } else if (sheet === 'CAPDAI') {
+                    html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">`;
+                    data.forEach(r => {
+                        html += `
+                            <div class="p-8 border border-slate-100 rounded-3xl bg-slate-50/50 relative overflow-hidden group">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-bl-full transition-all group-hover:scale-150"></div>
+                                <div class="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-2">Chứng nhận Taekwondo</div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-1">${r['Họ và tên'] || USER.name}</h3>
+                                <p class="text-slate-400 text-xs mb-6">Ngày sinh: ${r['Date'] || r['Ngày cấp'] || '—'}</p>
+                                <a href="${r['LinkGCN'] || r['Link phiếu']}" target="_blank" class="inline-flex items-center space-x-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-red-600 transition shadow-lg shadow-slate-200">
+                                    <i class="fas fa-certificate"></i> <span>XEM GIẤY CHỨNG NHẬN</span>
+                                </a>
+                            </div>`;
+                    });
+                    html += `</div>`;
+                
+                // Tìm đoạn: } else if (sheet === 'CAPDAI') { ... } và thêm tiếp:
+
+                } else if (sheet === 'DONDANGKY') {
+                    html += `<div class="grid grid-cols-1 gap-4">`;
+                    data.forEach((r, index) => {
+                        // Lấy link từ thuộc tính 'linkDon' (đã chuẩn hóa ở backend) hoặc theo tên cột chính xác
+                        const link = r['linkDon'] || r['Link đơn đăng ký'];
+                        const hasLink = link && String(link).startsWith('http');
+
+                        html += `
+                            <div class="flex flex-col md:flex-row justify-between items-center p-6 bg-white border border-slate-100 rounded-2xl transition-all hover:shadow-md shadow-sm">
+                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                    <div class="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-file-signature text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Hồ sơ số #${index + 1}</p>
+                                        <h3 class="text-slate-800 font-bold">Đơn đăng ký luyện tập</h3>
+                                    </div>
+                                </div>
+                                <div class="w-full md:w-auto text-center">
+                                    ${hasLink 
+                                        ? `<a href="${link}" target="_blank" class="inline-block w-full md:w-auto bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-red-600 transition shadow-lg shadow-slate-200 uppercase text-center">XEM ĐƠN</a>`
+                                        : `<span class="text-slate-300 italic text-xs">Đang cập nhật liên kết...</span>`
+                                    }
+                                </div>
+                            </div>`;
+                    });
+                    html += `</div>`;
+                
+                // Thêm logic hiển thị cho sheet DON
+                } else if (sheet === 'DON') {
+                    // Phần tiêu đề và nút gửi đơn
+                    /*
+                    html += `
+                        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                            <div>
+                                <h2 class="text-3xl font-black text-slate-800 uppercase tracking-tight">Đơn Xin Phép & Khác</h2>
+                                <p class="text-slate-500 text-sm">Xem lịch sử đơn và gửi yêu cầu mới</p>
+                            </div>
+                            <button onclick="openFormDon()" class="w-full md:w-auto bg-red-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-red-700 shadow-lg shadow-red-200 transition-all active:scale-95">
+                                <i class="fas fa-plus mr-2"></i>GỬI ĐƠN MỚI
+                            </button>
+                        </div>`;
+                    */
+                    // Phần bảng hiển thị dữ liệu cột B, C, D
+                    html += `
+                        <div class="overflow-x-auto bg-white border border-slate-100 rounded-3xl shadow-sm">
+                            <table class="w-full text-left">
+                                <thead class="bg-slate-50 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                                    <tr>
+                                        <th class="p-5">Ngày gửi (Cột B)</th>
+                                        <th class="p-5">Loại đơn (Cột C)</th>
+                                        <th class="p-5">Lý do (Cột D)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">`;
+
+                    if (data.length === 0) {
+                        html += `<tr><td colspan="3" class="p-10 text-center text-slate-400 italic">Bạn chưa gửi đơn nào.</td></tr>`;
+                    } else {
+                        data.forEach(r => {
+                            html += `
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <td class="p-5 text-sm font-medium text-slate-600">${r['Ngày gửi'] || r['B'] || '—'}</td>
+                                    <td class="p-5">
+                                        <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase">${r['Loại đơn'] || r['C'] || '—'}</span>
+                                    </td>
+                                    <td class="p-5 text-sm text-slate-500">${r['Lý do'] || r['D'] || '—'}</td>
+                                </tr>`;
+                        });
+                    }
+                    html += `</tbody></table></div>`;
+
+
+                } else {
+                    // Mặc định cho DONDANGKY và các sheet khác
+                    data.forEach(r => {
+                        html += `<div class="mb-4 p-6 bg-slate-50 rounded-2xl flex justify-between items-center border border-slate-100">
+                                    <div><div class="text-xs text-slate-400 font-bold uppercase tracking-wider">Hồ sơ của bạn</div><div class="text-lg font-bold">${Object.values(r)[1]}</div></div>
+                                    <a href="${Object.values(r)[headers.indexOf('Link đơn đăng ký') || 1]}" target="_blank" class="text-red-600 font-bold underline italic text-sm">Xem chi tiết <i class="fas fa-external-link-alt ml-1"></i></a>
+                                 </div>`;
+                    });
+                }
+            }
+            area.innerHTML = html;
+        }
+
+        async function sendDon() {
+            const { value: formValues } = await Swal.fire({
+                title: 'Gửi đơn nghỉ phép',
+                html: `<select id="sw-type" class="swal2-input"><option>Nghỉ phép học tập</option><option>Xin thi lên đai</option><option>Xin khác...</option></select>
+                       <textarea id="sw-reason" class="swal2-input" style="height:100px" placeholder="Nhập lý do vào đây"></textarea>`,
+                focusConfirm: false,
+                confirmButtonText: 'GỬI ĐƠN NGAY',
+                preConfirm: () => { return { type: document.getElementById('sw-type').value, reason: document.getElementById('sw-reason').value } }
+            });
+
+            if (formValues) {
+                const res = await fetch(API, { method: 'POST', body: JSON.stringify({ action: 'submitDon', data: { user: USER.id, ...formValues } }) }).then(r => r.json());
+                Swal.fire("Thành công", res.msg, "success");
+                load('DON');
+            }
+        }
+
+
+
+        async function changePass() {
+            const { value: pass } = await Swal.fire({ title: 'Đổi mật khẩu mới', input: 'password', inputPlaceholder: 'Nhập mật khẩu mới...', showCancelButton: true });
+            if (pass) {
+                await fetch(API, { method: 'POST', body: JSON.stringify({ action: 'changePass', data: { user: USER.id, newPass: pass } }) });
+                Swal.fire("Đã cập nhật", "Mật khẩu của bạn đã được thay đổi.", "success");
+            }
+        }
+
+    /**
+ * Hàm hiển thị bảng học phí khi click vào menu[cite: 1, 2]
+ */
+async function loadHocPhi() {
+  const area = document.getElementById('content-view');
+  
+  // Hiển thị trạng thái đang tải
+  area.innerHTML = `<div class="py-20 text-center animate-pulse">Đang tải dữ liệu học phí...</div>`;
+
+  try {
+    // Gọi API lấy dữ liệu từ Backend
+    const response = await fetch(API, { 
+      method: 'POST', 
+      body: JSON.stringify({ action: 'getData', data: { user: USER.id, sheetName: 'HOCPHI' } }) 
+    });
+    const data = await response.json();
+
+    let html = `
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-800 uppercase">Thông Tin Học Phí</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead class="bg-slate-100 text-slate-600 text-xs font-bold uppercase">
+            <tr>
+              <th class="p-4 border-b">Tháng</th>
+              <th class="p-4 border-b">Số tiền</th>
+              <th class="p-4 border-b">Trạng thái nộp</th>
+              <th class="p-4 border-b text-center">Biên lai</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y text-sm">`;
+
+    if (data.length === 0) {
+      html += `<tr><td colspan="4" class="p-10 text-center text-slate-400 italic">Không có dữ liệu học phí nào.</td></tr>`;
+    } else {
+      data.forEach(item => {
+        // Xử lý nút xem phiếu: Chỉ hiện nếu có link, nếu không hiện dấu gạch[cite: 1, 2]
+        const linkBtn = item.link && item.link.startsWith('http') 
+          ? `<a href="${item.link}" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold hover:bg-slate-900 transition shadow-sm uppercase">XEM PHIẾU</a>`
+          : `<span class="text-slate-300">—</span>`;
+
+        // Định dạng màu sắc cho trạng thái nộp[cite: 2]
+        const statusClass = item.trangThai.includes("Đã đóng") ? "text-green-600 font-bold" : "text-orange-500 font-medium";
+
+        html += `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="p-4 font-semibold text-slate-700">${item.thang}</td>
+            <td class="p-4 text-red-600 font-bold">${item.soTien}</td>
+            <td class="p-4 ${statusClass}">${item.trangThai}</td>
+            <td class="p-4 text-center">${linkBtn}</td>
+          </tr>`;
+      });
+    }
+
+    html += `</tbody></table></div>`;
+    area.innerHTML = html;
+
+  } catch (error) {
+    console.error("Lỗi:", error);
+    area.innerHTML = `<div class="py-20 text-center text-red-500">Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại.</div>`;
+  }
+}
+
+/**
+ * Hàm hiển thị giao diện ĐƠN ĐĂNG KÝ
+ */
+async function loadDonDangKy() {
+  const area = document.getElementById('content-view');
+  
+  // Hiển thị hiệu ứng tải dữ liệu
+  area.innerHTML = `
+    <div class="flex flex-col items-center justify-center py-20">
+      <div class="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+      <p class="text-slate-400 font-medium">Đang truy xuất hồ sơ...</p>
+    </div>`;
+
+  try {
+    const response = await fetch(API, { 
+      method: 'POST', 
+      body: JSON.stringify({ action: 'getData', data: { user: USER.id, sheetName: 'DONDANGKY' } }) 
+    });
+    const data = await response.json();
+
+    let html = `
+      <div class="mb-10">
+        <h2 class="text-3xl font-black text-slate-800 uppercase tracking-tight">Đơn Đăng Ký Luyện Tập</h2>
+        <div class="h-1 w-20 bg-red-600 mt-2 rounded-full"></div>
+      </div>
+      <div class="space-y-4">`;
+
+    if (!data || data.length === 0) {
+      html += `
+        <div class="p-16 text-center bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
+          <p class="text-slate-400 italic font-medium">Bạn chưa có đơn đăng ký nào trong hệ thống.</p>
+        </div>`;
+    } else {
+      data.forEach((item, index) => {
+        // Nếu ô Link trống hoặc không phải URL hợp lệ, sẽ không hiện nút XEM ĐƠN[cite: 1, 2]
+        const hasLink = item.link && item.link.startsWith('http');
+        const btnHtml = hasLink 
+          ? `<a href="${item.link}" target="_blank" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-red-600 transition shadow-lg shadow-slate-200 uppercase">XEM ĐƠN</a>`
+          : `<span class="text-slate-300 italic text-xs">Liên kết đang được cập nhật...</span>`;
+
+        html += `
+          <div class="flex flex-col md:flex-row justify-between items-center p-6 bg-white border border-slate-100 rounded-2xl transition-all hover:shadow-md">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+              <div class="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center">
+                <i class="fas fa-file-signature text-xl"></i>
+              </div>
+              <div>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Hồ sơ số #${index + 1}</p>
+                <h3 class="text-slate-800 font-bold">Đơn xin tập luyện Taekwondo</h3>
+              </div>
+            </div>
+            <div class="w-full md:w-auto text-center">
+              ${btnHtml}
+            </div>
+          </div>`;
+      });
+    }
+
+    html += `</div>`;
+    area.innerHTML = html;
+
+  } catch (err) {
+    area.innerHTML = `<div class="py-20 text-center text-red-500 font-bold">Lỗi kết nối dữ liệu. Vui lòng thử lại!</div>`;
+  }
+}
+
+  function loadDonData() {
+    google.script.run.withSuccessHandler(function(data) {
+      const tbody = document.getElementById('tableBodyDon');
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" class="text-center">Không có dữ liệu</td></tr>';
+        return;
+      }
+      let html = '';
+      data.forEach(row => {
+        html += `<tr>
+          <td>${row[0]}</td>
+          <td><span class="badge bg-info text-dark">${row[1]}</span></td>
+          <td>${row[2]}</td>
+        </tr>`;
+      });
+      tbody.innerHTML = html;
+    }).getDonData();
+  }
+
+  // Xử lý gửi form
+  document.getElementById('formDon').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = {
+      loaiDon: this.loaiDon.value,
+      lyDo: this.lyDo.value
+    };
+    
+    const btn = e.submitter;
+    btn.disabled = true;
+    btn.innerText = "Đang gửi...";
+
+    google.script.run.withSuccessHandler(function(res) {
+      if(res.success) {
+        alert("Gửi đơn thành công!");
+        document.getElementById('formDon').reset();
+        loadDonData(); // Cập nhật lại bảng
+      } else {
+        alert("Lỗi: " + res.error);
+      }
+      btn.disabled = false;
+      btn.innerText = "Gửi Đơn";
+    }).submitFormDon(formData);
+  });
+
+    </script>
+</body>
+</html>
