@@ -19,6 +19,39 @@
         
         .sidebar { background-color: #0f172a; transition: all 0.3s ease; }
 
+        /* Định dạng chân trang Footer */
+        footer {
+            display: none; /* Mặc định ẩn, chỉ hiện khi đã đăng nhập */
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* Hiển thị footer khi giao diện chính (main-app) được mở */
+        #main-app:not(.hidden) + footer {
+            display: block;
+        }
+
+        footer h3 { margin-bottom: 10px; font-size: 24px; color: #ef4444; } /* Tên võ đường màu đỏ tươi */
+        footer p { margin: 8px 0; line-height: 1.6; font-size: 14px; }
+
+        footer a { 
+            color: #f87171; /* Màu đỏ sáng cho liên kết */
+            text-decoration: none; 
+            margin: 0 10px; 
+            display: inline-block; 
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        footer a:hover { 
+            color: #ffffff; /* Di chuột vào sẽ đổi sang màu trắng */
+            text-decoration: underline; 
+        }
+
     </style>
 </head>
 <body class="text-slate-800">
@@ -119,6 +152,18 @@
             </div>
         </main>
     </div>
+
+    <footer>
+        <h3>MAI VIỆT TAEKWONDO</h3>
+        <p>Địa chỉ: Nhà văn hoá ấp Sân Bay, Xã Dầu Tiếng, TP Hồ Chí Minh</p>
+        <p>Hotline: 0937 551 868</p>
+        <div>
+            <a href="https://www.facebook.com/profile.php?id=61572840754253" target="_blank">Võ đường Mai Việt</a>
+            <a href="https://www.youtube.com/@maivviet" target="_blank">YouTube</a>
+            <a href="https://zalo.me/0937551868" target="_blank">Zalo</a>
+        </div>
+        <p style="margin-top:15px; font-size: 12px; color: #ffffff;">© 2026 Mai Việt Taekwondo. All rights reserved.</p>
+    </footer>
 
     <script>
         // QUAN TRỌNG: Thay URL dưới đây bằng URL Web App của bạn[cite: 1]
