@@ -13,51 +13,12 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
+        body { font-family: 'Lexend', sans-serif; background-color: #f8fafc; }
         
-      /* Đảm bảo toàn bộ trang không bị thừa khoảng trắng */
-        html, body { 
-            height: 100%; 
-            margin: 0;
-            font-family: 'Lexend', sans-serif; 
-        }
+        .active-menu { background: #dc2626 !important; color: white !important; font-weight: 700; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
         
-        /* Container chính bao phủ toàn màn hình */
-        #main-app {
-            display: flex;
-            flex-direction: column; /* Mặc định dọc cho mobile */
-            min-height: 100vh;
-        }
-        
-        /* Trên PC: Sidebar nằm trái, Content nằm phải */
-        @media (min-width: 1024px) {
-            #main-app {
-                flex-direction: row;
-            }
-        }
-        
-        /* Quan trọng: Vùng chứa nội dung và footer */
-        .content-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-width: 0; /* Chống vỡ layout trên mobile */
-        }
-        
-        /* Phần nội dung chính tự giãn ra để đẩy footer xuống đáy */
-        main {
-            flex: 1 0 auto;
-        }
-        
-        /* Footer cố định ở dưới cùng */
-        footer {
-            flex-shrink: 0;
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-        }
-        footer a { color: #60a5fa; text-decoration: none; margin: 0 10px; display: inline-block; }
-        footer a:hover { text-decoration: underline; }
+        .sidebar { background-color: #0f172a; transition: all 0.3s ease; }
+
     </style>
 </head>
 <body class="text-slate-800">
@@ -90,8 +51,8 @@
             </div>
 
             <div class="text-center mt-4">
-                <p class="text-slate-500 text-sm">THÀNH VIÊN MỚI
-                    <button onclick="window.location.href='dangky.html'" class="text-red-600 font-bold hover:underline">VIẾT ĐƠN ĐĂNG KÝ TẬP LUYỆN</button>
+                <p class="text-slate-500 text-sm">Chưa có tài khoản? 
+                    <button onclick="openRegister()" class="text-red-600 font-bold hover:underline">Đăng ký ngay</button>
                 </p>
             </div>
 
@@ -157,18 +118,6 @@
                 <!-- Data will load here -->
             </div>
         </main>
-
-        <footer>
-                <h3>MAI VIỆT TAEKWONDO</h3>
-                <p>Địa chỉ: Nhà văn hoá ấp Sân Bay, Xã Dầu Tiếng, TP Hồ Chí Minh</p>
-                <p>Hotline: 0937 551 868</p>
-                <div>
-                    <a href="https://www.facebook.com/profile.php?id=61572840754253" target="_blank">Võ đường Mai Việt</a>
-                    <a href="https://www.youtube.com/@maivviet">YouTube</a>
-                    <a href="https://zalo.me/0937551868" target="_blank">Zalo</a>
-                </div>
-                <p style="margin-top:15px;">© 2026 Mai Việt Taekwondo. All rights reserved.</p>
-            </footer>
     </div>
 
     <script>
