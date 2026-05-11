@@ -15,47 +15,49 @@
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
         
       /* Đảm bảo toàn bộ trang không bị thừa khoảng trắng */
-html, body { 
-    height: 100%; 
-    margin: 0;
-    font-family: 'Lexend', sans-serif; 
-}
-
-/* Container chính bao phủ toàn màn hình */
-#main-app {
-    display: flex;
-    flex-direction: column; /* Mặc định dọc cho mobile */
-    min-height: 100vh;
-}
-
-/* Trên PC: Sidebar nằm trái, Content nằm phải */
-@media (min-width: 1024px) {
-    #main-app {
-        flex-direction: row;
-    }
-}
-
-/* Quan trọng: Vùng chứa nội dung và footer */
-.content-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-width: 0; /* Chống vỡ layout trên mobile */
-}
-
-/* Phần nội dung chính tự giãn ra để đẩy footer xuống đáy */
-main {
-    flex: 1 0 auto;
-}
-
-/* Footer cố định ở dưới cùng */
-footer {
-    flex-shrink: 0;
-    background: #111827;
-    color: white;
-    text-align: center;
-    padding: 25px 15px;
-}
+        html, body { 
+            height: 100%; 
+            margin: 0;
+            font-family: 'Lexend', sans-serif; 
+        }
+        
+        /* Container chính bao phủ toàn màn hình */
+        #main-app {
+            display: flex;
+            flex-direction: column; /* Mặc định dọc cho mobile */
+            min-height: 100vh;
+        }
+        
+        /* Trên PC: Sidebar nằm trái, Content nằm phải */
+        @media (min-width: 1024px) {
+            #main-app {
+                flex-direction: row;
+            }
+        }
+        
+        /* Quan trọng: Vùng chứa nội dung và footer */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0; /* Chống vỡ layout trên mobile */
+        }
+        
+        /* Phần nội dung chính tự giãn ra để đẩy footer xuống đáy */
+        main {
+            flex: 1 0 auto;
+        }
+        
+        /* Footer cố định ở dưới cùng */
+        footer {
+            flex-shrink: 0;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+        footer a { color: #60a5fa; text-decoration: none; margin: 0 10px; display: inline-block; }
+        footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body class="text-slate-800">
