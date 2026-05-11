@@ -14,77 +14,58 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
         
-        /* Đảm bảo toàn bộ trang web chiếm hết chiều cao màn hình */
-        html, body { 
-            height: 100%; 
-            margin: 0;
-            padding: 0;
-            font-family: 'Lexend', sans-serif; 
-            background-color: #f8fafc; 
-        }
-        
-        .active-menu { background: #dc2626 !important; color: white !important; font-weight: 700; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
-        
-        .sidebar { background-color: #0f172a; transition: all 0.3s ease; }
+        /* Đảm bảo body chiếm toàn bộ chiều cao màn hình */
+html, body { 
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Lexend', sans-serif; 
+    background-color: #f8fafc; 
+}
 
-        /* 1. Thiết lập cho container chính của ứng dụng */
-        #main-app {
-            min-height: 100vh;
-            display: flex;
-        }
+/* Container chính sử dụng Flexbox */
+#main-app {
+    display: flex;
+    flex-direction: column; /* Mặc định cho mobile: xếp dọc */
+    min-height: 100vh; /* Quan trọng: Chiều cao tối thiểu bằng màn hình */
+}
 
-        /* 2. Tạo một vùng bọc vô hình chứa riêng Main và Footer để xử lý Flexbox */
-        .content-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-width: 0; /* Tránh vỡ layout khi bảng quá rộng */
-        }
+/* Khi lên màn hình lớn (lg), chuyển sang dạng ngang (Sidebar | Content) */
+@media (min-width: 1024px) {
+    #main-app {
+        flex-direction: row;
+    }
+}
 
-        /* 3. Phần nội dung chính (main) sẽ tự co giãn chiếm hết khoảng trống thừa */
-        main {
-            flex: 1 0 auto;
-        }
+/* Sidebar giữ nguyên chiều cao hoặc tự co giãn */
+.sidebar {
+    background-color: #0f172a;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
 
-        /* 4. Định dạng chân trang Footer */
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            width: 100%;
-            flex-shrink: 0; /* Không cho footer bị co nhỏ */
-        }
+/* Vùng chứa nội dung chính và footer */
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
 
-        footer h3 { margin-bottom: 10px; font-size: 24px; }
-        footer p { margin: 8px 0; line-height: 1.6; }
-        footer a { color: #60a5fa; text-decoration: none; margin: 0 10px; display: inline-block; }
-        footer a:hover { text-decoration: underline; }
+/* PHẦN QUAN TRỌNG: Main sẽ tự nở ra để chiếm hết không gian trống */
+main {
+    flex: 1 0 auto;
+}
 
-        /* RESPONSIVE (Cho Mobile / Máy tính bảng dưới 1024px theo chuẩn Tailwind lg:) */
-        @media (max-width: 1023px) {
-            #main-app {
-                flex-direction: column;
-            }
-            
-            .content-container {
-                min-height: auto;
-            }
-
-            footer {
-                padding: 20px 10px;
-            }
-
-            footer h3 {
-                font-size: 20px;
-            }
-
-            footer a {
-                display: block;
-                margin: 8px 0;
-            }
-        }
-
+/* Footer luôn nằm ở đáy của content-container */
+footer {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    width: 100%;
+    flex-shrink: 0; /* Không cho phép footer bị co lại */
+}
     </style>
 </head>
 <body class="text-slate-800">
