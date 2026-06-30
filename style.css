@@ -1,77 +1,51 @@
 :root { 
     --primary-red: #dc3545; 
     --dark-blue: #004085; 
-    --sidebar-width: 260px; 
 }
 
 body { 
-    background: #f0f2f5; 
-    font-family: 'Segoe UI', Roboto, sans-serif; 
+    background: #f8fafc; 
+    font-family: 'Lexend', sans-serif; 
     overflow-x: hidden; 
 }
 
-/* Sidebar Styles */
-#sidebar {
-    position: fixed; 
-    left: calc(-1 * var(--sidebar-width)); 
-    top: 0;
-    width: var(--sidebar-width); 
-    height: 100%;
-    background: #1a1d20; 
-    color: white; 
-    transition: all 0.3s ease; 
-    z-index: 1050;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+/* --- ĐẢM BẢO HIỂN THỊ SIDEBAR TRÊN MÁY TÍNH (Không bị mất nút Đổi mật khẩu/Đăng xuất) --- */
+@media (min-width: 1024px) {
+    .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
-#sidebar.active { left: 0; }
-
-#sidebar .nav-link { 
-    color: #adb5bd; 
-    padding: 15px 20px; 
-    border-bottom: 1px solid #2c3034; 
-    cursor: pointer; 
-    transition: 0.2s; 
-    display: flex; 
-    align-items: center;
+/* --- CHỐNG VỠ BẢNG DỮ LIỆU VÀ NÚT LIÊN KẾT --- */
+.overflow-x-auto {
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
-#sidebar .nav-link i { font-size: 1.2rem; width: 30px; }
-
-#sidebar .nav-link:hover, 
-#sidebar .nav-link.active { 
-    background: var(--primary-red); 
-    color: white; 
+table {
+    min-width: 100%;
+    table-layout: auto;
 }
 
-/* Overlay */
-#overlay {
-    display: none; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    background: rgba(0,0,0,0.5); 
-    z-index: 1040;
+/* Ép các ô nội dung không tự ý bẻ hàng làm méo chữ */
+th, td {
+    white-space: nowrap;
 }
 
-#overlay.active { display: block; }
-
-/* Main Content */
-#main-wrapper { transition: all 0.3s; width: 100%; }
-
-#top-bar { 
-    background: white; 
-    padding: 10px 20px; 
-    display: flex; 
-    align-items: center; 
-    position: sticky; 
-    top: 0; 
-    z-index: 1000; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+/* Sửa lỗi nút bấm "Mở liên kết" bị bóp nghẹt thành hàng dọc */
+a.whitespace-nowrap, 
+button.whitespace-nowrap {
+    display: inline-block !important;
+    white-space: nowrap !important;
 }
 
+/* --- CÁC STYLE BỔ TRỢ KHÁC (Giữ nguyên từ code cũ của bạn) --- */
 .hidden { display: none !important; }
 
 .card-custom { 
@@ -81,13 +55,9 @@ body {
     background: white; 
 }
 
-.table-responsive { border-radius: 10px; }
-
 /* Auth Styles */
 .auth-container { max-width: 450px; margin: 50px auto; }
-
 .nav-auth { border: none; margin-bottom: 25px; justify-content: center; gap: 10px; }
-
 .nav-auth .nav-link { 
     border-radius: 8px; 
     padding: 10px 25px; 
@@ -95,13 +65,11 @@ body {
     color: #0d6efd; 
     border: 1px solid #dee2e6;
 }
-
 .nav-auth .nav-link.active { 
     background-color: var(--primary-red) !important; 
     color: white !important; 
     border-color: var(--primary-red); 
 }
-
 .btn-primary-custom { 
     background: var(--primary-red); 
     color: white; 
@@ -109,7 +77,6 @@ body {
     font-weight: bold; 
     text-transform: uppercase; 
 }
-
 .toggle-password {
     position: absolute; 
     right: 15px; 
@@ -118,21 +85,4 @@ body {
     cursor: pointer; 
     color: #6c757d; 
     z-index: 10;
-}
-
-.guide-box { 
-    border-top: 1px solid #eee; 
-    margin-top: 30px; 
-    padding-top: 20px; 
-    text-align: left; 
-    font-size: 0.85rem; 
-    color: #444; 
-}
-
-.guide-title { 
-    color: var(--primary-red); 
-    font-weight: bold; 
-    text-align: center; 
-    display: block; 
-    margin-bottom: 10px; 
 }
