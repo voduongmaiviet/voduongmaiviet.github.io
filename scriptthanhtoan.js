@@ -9,7 +9,7 @@ if (CURRENT_HOST.includes("github.dev")) {
 } else if (CURRENT_HOST.includes("github.io") || CURRENT_HOST.includes("gmaiviet.github.io")) {
     // 2. Nếu chạy chính thức trên GitHub Pages (như trên thiết bị di động của bạn)
     // HÃY ĐẢM BẢO URL DƯỚI ĐÂY KHỚP VỚI ĐƯỜNG LINK BACKEND CODESPACES ĐANG HOẠT ĐỘNG CỦA BẠN
-    API_URL = "https://automatic-tribble-jr5gx4rg7q6gfqxg9-3000.app.github.dev";
+    API_URL = "https://automatic-tribble-jr5gx4rg7q6gfqxg9.github.dev";
 }
 
 console.log("Cấu hình API kết nối tới mục tiêu:", API_URL);
