@@ -1,5 +1,5 @@
 // Thay thế localhost bằng đường link Public lấy từ tab PORTS trên Codespaces của bạn
-const API_URL = "https://automatic-tribble-jr5gx4rg7q6qfqxg9-3000.app.github.dev";
+const API_URL = "https://automatic-tribble-jr5gx4rg7q6gfqxg9-3000.app.github.dev";
 
 // ===============================
 // Cấu hình Server
