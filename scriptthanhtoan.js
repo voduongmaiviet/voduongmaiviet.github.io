@@ -1,1 +1,233 @@
-function a0_0xd2de(){const _0xac110f=['ndqYmtKWA1rWvvLM','vNvPigZdSM5Nig5O4BQTCcdeKEg6P3KGXjhHU6CGDgJdTg5NihrPBI4','BM9YBwfSAxPL','DhjPBq','B3jKzxjdB2rL','z2v0rwXLBwvUDej5swq','y2XVC2u','mvrHBufXDW','mtfwyM5LCeO','zgLZCgXHEufTB3vUDa','C3r1zgvUDe5HBwu','Dg9mB2nHBgvtDhjPBMC','B3jKzxjnzw1V','l2nOzwnRlw9YzgvYlW','ue9tva','DMfSDwu','BM9Uzq','Aw5UzxjuzxH0','Bg9N','mtjLzgHXrK4','CxjdB2rL','mtm5nZyXme5YrvrOta','yMXVy2S','Dg9vChbLCKnHC2u','vgHP4BQ/Dsb0Amo0BMCGDgLU','tKze','zgLZCgXHEq','mJK3ntG4rurgsxrH','C3rHDhvZ','nde2mZjQsuL4uvi','mtyYmZDMExDdEu0','zMLYzq','C3vJy2vZC1n0DwrLBNrjBMzV','zxjYB3i','C3vIC3rYAw5N','BwvZC2fNzq','s2JdTg5Nig5O4BQTBIdeKCAW4BUJyYbruIb04BURifbHEu9t','C3jJ','mZCZmJK3mgLHALDTza','Cgf5BwvUDenVBNrLBNq','DgHLBG','nJq1ngHrq2XoyG','yxbWBgLJyxrPB24VANnVBG','CxjjBwfNzq','C3vJy2vZC0jVEa','tog7L2K','C3vJy2vZCW','ANnVBG','C3r5Bgu','Cxjtzwn0Aw9U','DhvPDgLVBKfTB3vUDa','nZa2ohnuDxLHEG','mJvbvuzJCMK','uefjra','XjbHBMCGDog6Ow8GBCoJiffslI4U','l2nYzwf0zs1WyxLTzw50lwXPBMS','vgHHBMGGDg/dOw4GDgJdOg5OigpdTg5N','nJCYzLLyC1DR','C2HVD0XVywrPBMC','BgfIzwXuzxH0','CMvWBgfJzq','zgf0yq'];a0_0xd2de=function(){return _0xac110f;};return a0_0xd2de();}(function(_0x246b6e,_0x47827f){const _0x10b87b=a0_0x9d48,_0x3bf18f=_0x246b6e();while(!![]){try{const _0x9165e9=-parseInt(_0x10b87b(0x119))/0x1*(parseInt(_0x10b87b(0x112))/0x2)+-parseInt(_0x10b87b(0x125))/0x3*(parseInt(_0x10b87b(0x12f))/0x4)+parseInt(_0x10b87b(0x108))/0x5*(parseInt(_0x10b87b(0x12d))/0x6)+parseInt(_0x10b87b(0xfd))/0x7*(parseInt(_0x10b87b(0x10d))/0x8)+-parseInt(_0x10b87b(0x127))/0x9+-parseInt(_0x10b87b(0xfa))/0xa*(parseInt(_0x10b87b(0x11a))/0xb)+-parseInt(_0x10b87b(0x107))/0xc*(-parseInt(_0x10b87b(0x130))/0xd);if(_0x9165e9===_0x47827f)break;else _0x3bf18f['push'](_0x3bf18f['shift']());}catch(_0x45e18f){_0x3bf18f['push'](_0x3bf18f['shift']());}}}(a0_0xd2de,0x41dd9));const API_URL='https://symmetrical-meme-xrw4j9r4p9qp29xjg-3000.app.github.dev';function a0_0x9d48(_0x39187f,_0x4fab86){_0x39187f=_0x39187f-0xf4;const _0xd2dee8=a0_0xd2de();let _0x9d4884=_0xd2dee8[_0x39187f];if(a0_0x9d48['sacteE']===undefined){var _0x1d850e=function(_0x33ab55){const _0x174c81='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x201eab='',_0xe2edc='';for(let _0x4af9a9=0x0,_0x5b2850,_0x43679f,_0x132e52=0x0;_0x43679f=_0x33ab55['charAt'](_0x132e52++);~_0x43679f&&(_0x5b2850=_0x4af9a9%0x4?_0x5b2850*0x40+_0x43679f:_0x43679f,_0x4af9a9++%0x4)?_0x201eab+=String['fromCharCode'](0xff&_0x5b2850>>(-0x2*_0x4af9a9&0x6)):0x0){_0x43679f=_0x174c81['indexOf'](_0x43679f);}for(let _0x104429=0x0,_0x3d4e9d=_0x201eab['length'];_0x104429<_0x3d4e9d;_0x104429++){_0xe2edc+='%'+('00'+_0x201eab['charCodeAt'](_0x104429)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0xe2edc);};a0_0x9d48['UBHsup']=_0x1d850e,a0_0x9d48['JPGQwV']={},a0_0x9d48['sacteE']=!![];}const _0x1da9b9=_0xd2dee8[0x0],_0x56c9c2=_0x39187f+_0x1da9b9,_0x514626=a0_0x9d48['JPGQwV'][_0x56c9c2];return!_0x514626?(_0x9d4884=a0_0x9d48['UBHsup'](_0x9d4884),a0_0x9d48['JPGQwV'][_0x56c9c2]=_0x9d4884):_0x9d4884=_0x514626,_0x9d4884;}let currentOrderCode=null,checkInterval=null;function removeSign(_0x201eab){const _0x99d08e=a0_0x9d48;return _0x201eab[_0x99d08e(0x114)](_0x99d08e(0x12b))['replace'](/[\u0300-\u036f]/g,'')[_0x99d08e(0x110)](/đ/g,'d')[_0x99d08e(0x110)](/Đ/g,'D')[_0x99d08e(0x129)]()['replace'](/\s+/g,'\x20')[_0x99d08e(0x115)]();}async function generatePaymentQR(){const _0x536581=a0_0x9d48,_0xe2edc=document[_0x536581(0x117)](_0x536581(0x11c))[_0x536581(0x121)][_0x536581(0x115)](),_0x4af9a9=document[_0x536581(0x117)](_0x536581(0xfb))['value'][_0x536581(0x115)](),_0x5b2850=document[_0x536581(0x117)](_0x536581(0x106))[_0x536581(0x121)][_0x536581(0x115)]();if(!_0xe2edc||!_0x4af9a9||!_0x5b2850){Swal[_0x536581(0x131)]({'icon':'warning','title':_0x536581(0x12a),'text':_0x536581(0x113)});return;}const _0x43679f=(removeSign(_0xe2edc)+'\x20'+removeSign(_0x4af9a9))[_0x536581(0xf6)](0x0,0x19)[_0x536581(0x115)]();try{Swal[_0x536581(0x131)]({'title':_0x536581(0x10a),'allowOutsideClick':![],'didOpen':()=>Swal[_0x536581(0x10e)]()});const _0x132e52=await fetch(API_URL+_0x536581(0x10b),{'method':_0x536581(0x120),'headers':{'Content-Type':_0x536581(0xfe)},'body':JSON['stringify']({'amount':Number(_0x5b2850),'description':_0x43679f})}),_0x104429=await _0x132e52[_0x536581(0x103)]();Swal['close'](),console[_0x536581(0x124)](_0x104429);if(!_0x104429[_0x536581(0x102)])throw new Error(_0x104429[_0x536581(0xf7)]||_0x104429[_0x536581(0xf5)]);currentOrderCode=_0x104429[_0x536581(0x116)],document[_0x536581(0x117)]('inputForm')[_0x536581(0x104)]['display']='none',document[_0x536581(0x117)]('qrSection')[_0x536581(0x104)][_0x536581(0x12c)]=_0x536581(0x128),document[_0x536581(0x117)](_0x536581(0x11b))['innerText']=Number(_0x5b2850)[_0x536581(0x11d)]('vi-VN')+'\x20đ',document['getElementById'](_0x536581(0x11e))[_0x536581(0x123)]=_0x43679f,document[_0x536581(0x117)](_0x536581(0xf4))[_0x536581(0x123)]=_0xe2edc;if(_0x104429[_0x536581(0x126)])document[_0x536581(0x117)](_0x536581(0xff))['src']=_0x104429['qrCode'];else{if(_0x104429[_0x536581(0x111)]&&_0x104429[_0x536581(0x111)]['qrCode'])document[_0x536581(0x117)](_0x536581(0xff))[_0x536581(0xf9)]=_0x104429[_0x536581(0x111)][_0x536581(0x126)];else{Swal[_0x536581(0x131)]({'icon':_0x536581(0xf5),'title':_0x536581(0xf8)});return;}}document['getElementById'](_0x536581(0x10f))[_0x536581(0x123)]='Đang\x20chờ\x20thanh\x20toán...',clearInterval(checkInterval),checkInterval=setInterval(verifyPaymentRealTime,0x7d0);}catch(_0x3d4e9d){console[_0x536581(0xf5)](_0x3d4e9d),Swal[_0x536581(0x118)](),Swal[_0x536581(0x131)]({'icon':'error','title':_0x536581(0x101),'text':_0x3d4e9d[_0x536581(0xf7)]});}}async function verifyPaymentRealTime(){const _0x3c7893=a0_0x9d48;if(!currentOrderCode)return;try{const _0x447609=await fetch(API_URL+_0x3c7893(0x11f)+currentOrderCode),_0x151d9e=await _0x447609[_0x3c7893(0x103)]();console[_0x3c7893(0x124)](_0x151d9e),_0x151d9e[_0x3c7893(0x102)]&&_0x151d9e[_0x3c7893(0x12e)]===_0x3c7893(0x109)&&showSuccessNotification();}catch(_0x85db5e){console[_0x3c7893(0x124)](_0x85db5e);}}function showSuccessNotification(){const _0xaf8279=a0_0x9d48;clearInterval(checkInterval),Swal[_0xaf8279(0x131)]({'icon':_0xaf8279(0x102),'title':_0xaf8279(0x10c),'text':'Hệ\x20thống\x20đã\x20nhận\x20được\x20giao\x20dịch.','timer':0x9c4,'showConfirmButton':![]})[_0xaf8279(0xfc)](()=>{const _0x1f076e=_0xaf8279;document[_0x1f076e(0x117)](_0x1f076e(0x105))[_0x1f076e(0x104)][_0x1f076e(0x12c)]=_0x1f076e(0x122),document['getElementById'](_0x1f076e(0x100))['style'][_0x1f076e(0x12c)]=_0x1f076e(0x128);});}function triggerMockSuccess(){showSuccessNotification();}
+// Thay thế localhost bằng đường link Public lấy từ tab PORTS trên Codespaces của bạn
+const API_URL = "https://symmetrical-meme-xrw4j9r4p9qp29xjg-3000.app.github.dev";
+
+// ===============================
+// Cấu hình Server
+// ===============================
+
+let currentOrderCode = null;
+let checkInterval = null;
+
+// ===============================
+// Bỏ dấu tiếng Việt
+// ===============================
+function removeSign(str) {
+
+    return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .toUpperCase()
+        .replace(/\s+/g, " ")
+        .trim();
+
+}
+
+// ===============================
+// Tạo QR PayOS
+// ===============================
+async function generatePaymentQR() {
+
+    const rawName = document.getElementById("studentName").value.trim();
+    const rawContent = document.getElementById("paymentContent").value.trim();
+    const amount = document.getElementById("tuitionAmount").value.trim();
+
+    if (!rawName || !rawContent || !amount) {
+
+        Swal.fire({
+            icon: "warning",
+            title: "Thiếu thông tin",
+            text: "Vui lòng nhập đầy đủ thông tin."
+        });
+
+        return;
+    }
+
+    const memo = `${removeSign(rawName)} ${removeSign(rawContent)}`
+        .substring(0,25)
+        .trim();
+
+    try {
+
+        Swal.fire({
+            title:"Đang tạo mã QR...",
+            allowOutsideClick:false,
+            didOpen:()=>Swal.showLoading()
+        });
+
+        const response = await fetch(`${API_URL}/create-payment-link`,{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                amount:Number(amount),
+
+                description:memo
+
+            })
+
+        });
+
+        const result = await response.json();
+
+        Swal.close();
+
+        console.log(result);
+
+        if(!result.success){
+
+            throw new Error(result.message || result.error);
+
+        }
+
+        currentOrderCode = result.orderCode;
+
+        // ======================
+        // Hiển thị giao diện
+        // ======================
+
+        document.getElementById("inputForm").style.display="none";
+        document.getElementById("qrSection").style.display="block";
+
+        document.getElementById("displayAmount").innerText=
+            Number(amount).toLocaleString("vi-VN")+" đ";
+
+        document.getElementById("orderMemo").innerText=memo;
+
+        document.getElementById("successStudentInfo").innerText=
+            rawName;
+
+        // ======================
+        // QR từ PayOS
+        // ======================
+
+        if(result.qrCode){
+
+            document.getElementById("qrImage").src=result.qrCode;
+
+        }
+        else if(result.data && result.data.qrCode){
+
+            document.getElementById("qrImage").src=result.data.qrCode;
+
+        }
+        else{
+
+            Swal.fire({
+                icon:"error",
+                title:"Không nhận được QR từ PayOS"
+            });
+
+            return;
+        }
+
+        document.getElementById("labelText").innerText=
+        "Đang chờ thanh toán...";
+
+        clearInterval(checkInterval);
+
+        checkInterval=setInterval(verifyPaymentRealTime,2000);
+
+    }
+    catch(err){
+
+        console.error(err);
+
+        Swal.close();
+
+        Swal.fire({
+
+            icon:"error",
+
+            title:"Lỗi",
+
+            text:err.message
+
+        });
+
+    }
+
+}
+
+// ===============================
+// Kiểm tra thanh toán
+// ===============================
+async function verifyPaymentRealTime(){
+
+    if(!currentOrderCode){
+
+        return;
+
+    }
+
+    try{
+
+        const response=await fetch(
+
+            `${API_URL}/check-order/${currentOrderCode}`
+
+        );
+
+        const result=await response.json();
+
+        console.log(result);
+
+        if(result.success && result.status==="PAID"){
+
+            showSuccessNotification();
+
+        }
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+// ===============================
+// Thành công
+// ===============================
+function showSuccessNotification(){
+
+    clearInterval(checkInterval);
+
+    Swal.fire({
+
+        icon:"success",
+
+        title:"Thanh toán thành công",
+
+        text:"Hệ thống đã nhận được giao dịch.",
+
+        timer:2500,
+
+        showConfirmButton:false
+
+    }).then(()=>{
+
+        document.getElementById("qrSection").style.display="none";
+
+        document.getElementById("successBox").style.display="block";
+
+    });
+
+}
+
+// ===============================
+// Test nhanh
+// ===============================
+function triggerMockSuccess(){
+
+    showSuccessNotification();
+
+}
