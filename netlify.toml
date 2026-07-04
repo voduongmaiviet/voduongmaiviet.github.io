@@ -1,0 +1,10 @@
+[build]
+  publish = "." # Thư mục chứa các file HTML/CSS/JS frontend
+
+[functions]
+  external_node_modules = ["express"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat"
+  status = 200
