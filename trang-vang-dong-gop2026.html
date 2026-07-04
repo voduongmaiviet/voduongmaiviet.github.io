@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang vàng</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: "Times New Roman", serif;
+    background:#fffdf0; /* Nền vàng kem nhẹ nhàng, trang trọng */
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background: linear-gradient(135deg, #001f5c, #003b9b);
+    padding:20px;
+    text-align:center;
+    color:white;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+header h1{
+    font-size:26px;
+    font-weight:bold;
+    letter-spacing:1px;
+    color: #ffda79; /* Màu chữ vàng gold nổi bật trên nền xanh */
+}
+
+header p{
+    margin-top:8px;
+    font-size:18px;
+    opacity:0.9;
+}
+
+/* HERO */
+.hero{
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://lh3.googleusercontent.com/d/1pwLkpvSO1rrfgLMYFktd2oKuucHyq3gF') center/cover;
+    height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.hero-content h2{
+    font-size:28px;
+    margin-bottom:12px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.5);
+    color: #ffd700; /* Vàng Gold rực rỡ */
+}
+
+.hero-content p{
+    font-size:20px;
+    max-width:800px;
+    line-height:1.6;
+}
+
+/* CONTAINER */
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:auto;
+    margin-top:-40px;
+    position:relative;
+    z-index:10;
+    padding-bottom: 40px;
+}
+
+/* CARD VÀNG TRANG TRỌNG */
+.card{
+    background: #ffffff;
+    border: 2px solid #d4af37; /* Viền vàng gold quanh card */
+    border-radius:18px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
+/* TITLE */
+.main-title{
+    text-align:center;
+    color:#b38600; /* Màu vàng đậm trang trọng */
+    font-size:36px;
+    margin-bottom:20px;
+    font-weight:bold;
+    text-transform: uppercase;
+}
+
+.main-title i{
+    margin-right:12px;
+    color: #d4af37;
+}
+
+.intro-text {
+    font-size: 19px;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 35px;
+    text-indent: 30px;
+}
+
+/* DANH SÁCH MỤC ĐÍCH ĐÓNG GÓP */
+.purpose-container {
+    margin-bottom: 40px;
+}
+
+.purpose-title {
+    font-size: 22px;
+    color: #003b9b;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.item-box{
+    display:flex;
+    align-items:flex-start;
+    gap:20px;
+    padding:20px;
+    border-radius:14px;
+    margin-bottom:15px;
+    background:#fffdf3; /* Nền vàng nhạt cho từng mục */
+    border-left:6px solid #d4af37; /* Vạch đứng màu vàng */
+    transition:0.3s;
+}
+
+.item-box:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(212, 175, 55, 0.15);
+}
+
+.item-icon{
+    min-width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#d4af37;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.item-content h3{
+    color:#003b9b;
+    margin-bottom:6px;
+    font-size:22px;
+}
+
+.item-content p{
+    font-size:18px;
+    line-height:1.6;
+}
+
+/* KHU VỰC THÔNG TIN CHUYỂN KHOẢN */
+.donation-box {
+    background: #002878;
+    color: white;
+    border-radius: 18px;
+    padding: 35px;
+    margin-top: 40px;
+    border: 3px solid #d4af37;
+}
+
+.donation-box h2 {
+    color: #ffd700;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.donation-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.bank-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.bank-info p {
+    font-size: 19px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.bank-info strong {
+    color: #ffd700;
+}
+
+.qr-code {
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.qr-code img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.qr-code span {
+    color: #222;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* PHẦN DANH SÁCH PHỤ HUYNH ĐÓNG GÓP (MỚI THÊM) */
+.contributors-box {
+    background: #fffdf3;
+    border: 2px dashed #d4af37;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.contributors-box h2 {
+    color: #b38600;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.contributors-box h2 i {
+    margin-right: 8px;
+}
+
+.contributors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.contributor-item {
+    background: #ffffff;
+    border: 1px solid #f2e3b6;
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(212, 175, 55, 0.05);
+}
+
+.contributor-name {
+    font-weight: bold;
+    color: #003b9b;
+}
+
+.contributor-detail {
+    color: #555;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* LỜI CẢM ƠN */
+.thanks-note {
+    text-align: center;
+    margin-top: 35px;
+    font-style: italic;
+    font-size: 20px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+footer h3{
+    margin-bottom:15px;
+    font-size:26px;
+    color: #ffd700;
+}
+
+footer p{
+    margin:8px 0;
+    font-size:18px;
+}
+
+footer a{
+    color:#60a5fa;
+    text-decoration:none;
+    margin:0 10px;
+    font-size:18px;
+}
+
+footer a:hover{
+    text-decoration:underline;
+}
+
+/* RESPONSIVE */
+/* RESPONSIVE CHO ĐIỆN THOẠI */
+@media(max-width:768px){
+    .hero{
+        height:200px;
+    }
+    .hero-content h2{
+        font-size:22px;
+    }
+    .hero-content p{
+        font-size:16px;
+    }
+    .main-title{
+        font-size:24px;
+    }
+    .intro-text {
+        font-size: 16px;
+        text-indent: 20px;
+    }
+    .card {
+        padding: 20px 15px; /* Giảm padding của card để tăng không gian hiển thị */
+    }
+    .item-box{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        padding: 15px;
+    }
+    
+    /* Tối ưu riêng cho khu vực thông tin chuyển khoản */
+    .donation-box {
+        padding: 20px 15px; /* Giảm padding từ 35px xuống để chữ có nhiều đất diễn hơn */
+    }
+    .donation-box h2 {
+        font-size: 20px;
+    }
+    .donation-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .bank-info {
+        width: 100%;
+    }
+    .bank-info p {
+        font-size: 16px; /* Hạ size chữ xuống một chút cho vừa vặn */
+        margin-bottom: 10px;
+    }
+    .bank-info strong {
+        display: inline-block; /* Giúp các cụm thông tin quan trọng dễ nhìn */
+        word-break: break-word; 
+    }
+    
+    .contributors-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vcb-btn{
+    position:relative;
+    overflow:hidden;
+
+    width:100%;
+    padding:18px 24px;
+
+    border:none;
+    border-radius:20px;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+
+    font-size:22px;
+    font-weight:700;
+    color:#fff;
+
+    background:linear-gradient(
+        180deg,
+        #00a65a 0%,
+        #008b4c 45%,
+        #006738 100%
+    );
+
+    box-shadow:
+        0 12px 28px rgba(0,103,56,.35),
+        inset 0 2px 0 rgba(255,255,255,.35),
+        inset 0 -3px 8px rgba(0,0,0,.15);
+
+    transition:.25s;
+}
+
+.vcb-btn i{
+    font-size:28px;
+}
+
+.vcb-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 18px 40px rgba(0,103,56,.45),
+        inset 0 2px 0 rgba(255,255,255,.45);
+}
+
+.vcb-btn:active{
+    transform:scale(.97);
+}
+
+.vcb-btn::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:50%;
+    border-radius:20px 20px 50px 50px;
+
+    background:linear-gradient(
+        rgba(255,255,255,.35),
+        rgba(255,255,255,0)
+    );
+}
+
+.vcb-btn .shine{
+    position:absolute;
+    top:0;
+    left:-120%;
+
+    width:50%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.6),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+}
+
+.vcb-btn:hover .shine{
+    animation:shine 1s ease;
+}
+
+@keyframes shine{
+    from{
+        left:-120%;
+    }
+    to{
+        left:170%;
+    }
+}
+
+.vcb-btn{
+    background:linear-gradient(135deg,#00B45A,#008E49,#006738);
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.08) inset,
+        0 10px 30px rgba(0,103,56,.45),
+        0 0 25px rgba(0,166,90,.35);
+
+    letter-spacing:.6px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>VÕ ĐƯỜNG TAEKWONDO MAI VIỆT</h1>
+    <p>Kỷ luật - Lễ nghĩa - Ý chí - Tinh thần võ đạo</p>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>CHUNG TAY PHÁT TRIỂN VÕ ĐƯỜNG</h2>
+        <p>Đồng hành cùng thế hệ trẻ trên con đường rèn luyện thể chất và đạo đức</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="card">
+        <h1 class="main-title">
+            <i class="fa-solid fa-heart-notch"></i>
+            ĐÓNG GÓP QUỸ VÀ TÀI TRỢ VÕ ĐƯỜNG
+        </h1>
+
+        <p class="intro-text">
+            Kính gửi Quý phụ huynh cùng toàn thể những ai yêu mến bộ môn Taekwondo, Võ đường Mai Việt luôn nỗ lực mang lại môi trường tập luyện tốt nhất cho các võ sinh. Để nâng cao chất lượng giảng dạy, cơ sở vật chất cũng như tạo điều kiện cho các em có hoàn cảnh khó khăn tham gia tập luyện, võ đường rất mong nhận được sự chung tay đóng góp và đồng hành tự nguyện từ Quý phụ huynh.
+        </p>
+
+        <h1 class="main-title">
+            <i class="fa-solid fa-heart-notch"></i>
+            SỐ TIỀN ĐÓNG GÓP
+        </h1>
+
+        <p class="intro-text">
+            Để các võ đường Dầu Tiếng, Bến Củi, Định Hiệp hoạt động tốt hơn, nay ban chủ nhiệm trân trọng thông báo đến phụ huynh và võ sinh.
+            Mỗi võ sinh đóng góp 100k trở lên hoặc hơn. Mọi sự đóng góp là tự nguyện và không ép buộc.
+            Rất mong quý phụ huynh ủng hộ nếu có thể. Mọi sự đóng góp sẽ đưa vào trang vàng của võ đường.
+        </p>
+
+        <div class="purpose-container">
+            <div class="purpose-title">Mục Đích Sử Dụng Quỹ Đóng Góp:</div>
+
+            <div class="item-box">
+                <div class="item-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                <div class="item-content">
+                    <h3>Nâng cấp Trang Thiết Bị</h3>
+                    <p>Mua sắm, thay mới thảm tập đạt chuẩn, đích đá, giáp bảo hộ và các dụng cụ bổ trợ nhằm đảm bảo an toàn tuyệt đối cho võ sinh khi tập luyện đối kháng.</p>
+                </div>
+            </div>
+
+            <div class="item-box">
+                <div class="item-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="item-content">
+                    <h3>Quỹ Học Bổng Mai Việt</h3>
+                    <p>Hỗ trợ miễn giảm học phí, tặng võ phục và trang bị cho các võ sinh có hoàn cảnh khó khăn nhưng luôn vươn lên, đạt thành tích tốt trong học tập và võ thuật.</p>
+                </div>
+            </div>
+
+            <div class="item-box">
+                <div class="item-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="item-content">
+                    <h3>Tổ Chức Giải Đấu & Sự Kiện</h3>
+                    <p>Tạo nguồn kinh phí để tổ chức các giải thi đấu nội bộ, kỳ thi lên đai trang trọng và các buổi dã ngoại, sinh hoạt ngoại khóa rèn luyện kỹ năng sống.</p>
+                </div>
+            </div>
+        </div>
+
+
+<div class="donation-box">
+    <h2><i class="fa-solid fa-credit-card"></i> Thông Tin Tiếp Nhận Đóng Góp</h2>
+    
+    <div class="donation-flex">
+        <div class="bank-info">
+            <p>Quý phụ huynh có thể đóng góp trực tiếp cho Ban chủ nhiệm hoặc chuyển khoản qua ngân hàng theo thông tin dưới đây:</p>
+            <p><i class="fa-solid fa-university"></i> Ngân hàng: <strong>Agribank</strong></p>
+            <p><i class="fa-solid fa-hashtag"></i> Số tài khoản: <strong>5504215009186</strong></p>
+            <p><i class="fa-solid fa-user"></i> Chủ tài khoản: <strong>MAI VAN VIET</strong></p>
+            <p><i class="fa-solid fa-pen-clip"></i> Nội dung chuyển khoản: <br><strong style="background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">Họ tên Võ sinh Đóng góp võ đường Mai Việt (không dấu)</strong></p>
+
+        </div>
+
+        <div class="qr-code">
+            <img src="QRPay.jpg" alt="Mã QR Mai Việt" />
+            <br>
+            <span>Quét mã QR để chuyển khoản</span>
+        </div>
+    </div>
+</div>
+
+<div class="mt-8 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm text-center">
+    <button
+        onclick="window.location.href='thanhtoandientu.html'" class="vcb-btn">
+        <span class="shine"></span>
+        <i class="fa-solid fa-qrcode"></i>
+        <span>CHUYỂN KHOẢN NGAY</span>
+    </button>
+</div>
+
+
+<!-- PHẦN DANH SÁCH PHỤ HUYNH ĐÓNG GÓP (MỚI THÊM) -->
+<div class="contributors-box">
+    <h2><i class="fa-solid fa-star"></i> Danh Sách Vàng Đóng Góp</h2>
+    <div class="contributors-grid">
+
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Vũ Trần Lê Vinh</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Vũ Trần Lê Quang</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Nguyễn Ngọc Nhi</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Phạm Đỗ Anh Duy</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Mai Thị Như Ngọc</span>
+            <span class="contributor-detail">Đóng góp 200.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Mai Thị Khánh Ngọc</span>
+            <span class="contributor-detail">Đóng góp 200.000 đồng</span>
+        </div>
+       <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Huỳnh Trần Thanh Thiện</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+         <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Nguyễn Thanh Huy</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Trần Nguyễn Bảo Nam</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Lê Thiên Phúc</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Lê Gia Khánh</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+       <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Phạm Quỳnh Anh</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh Phạm Đức Minh</span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+  <!--       <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh </span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh </span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+        <div class="contributor-item">
+            <span class="contributor-name">Phụ huynh Võ sinh </span>
+            <span class="contributor-detail">Đóng góp 100.000 đồng</span>
+        </div>
+ -->       
+    </div>
+</div>
+
+
+        <p class="thanks-note">
+            "Sự đồng hành của Quý phụ huynh là nguồn động lực to lớn giúp võ đường xây dựng một thế hệ võ sinh bản lĩnh, lễ phép và giàu lòng nhân ái."<br>
+            <strong>Xin chân thành cảm ơn!</strong>
+        </p>
+    </div>
+</div>
+
+<footer>
+    <h3>MAI VIỆT TAEKWONDO</h3>
+    <p>Địa chỉ: Nhà văn hoá ấp Sân Bay, Xã Dầu Tiếng, TP Hồ Chí Minh</p>
+    <p>Hotline: 0937 551 868</p>
+    <div style="margin-top:15px;">
+        <a href="https://www.facebook.com/profile.php?id=61572840754253" target="_blank"><i class="fab fa-facebook"></i> Facebook Võ đường Mai Việt</a>
+        <a href="https://www.youtube.com/@maivviet" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    </div>
+</footer>
+
+</body>
+</html>
