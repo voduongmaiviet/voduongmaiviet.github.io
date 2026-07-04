@@ -1,15 +1,18 @@
 const CURRENT_HOST = window.location.hostname;
-let API_URL = "http://localhost:3000"; // Mặc định khi chạy local Offline
+let API_URL = ""; 
 
-// SỬA ĐỔI: Kiểm tra và phân luồng URL thông minh
-if (CURRENT_HOST.includes("github.dev")) {
-    // 1. Nếu bạn đang xem trước (Preview) ứng dụng ngay trong Codespaces
+// CẤU HÌNH TỰ ĐỘNG PHÂN LUỒNG CHO NETLIFY, CODESPACES VÀ LOCALHOST
+if (CURRENT_HOST.includes("localhost") || CURRENT_HOST.includes("127.0.0.1")) {
+    // 1. Nếu chạy ở máy cá nhân offline
+    API_URL = "http://localhost:3000"; 
+} else if (CURRENT_HOST.includes("github.dev")) {
+    // 2. Nếu bạn đang xem trước (Preview) ứng dụng ngay trong Codespaces
     const workspaceName = CURRENT_HOST.replace(".github.dev", "");
     API_URL = `https://${workspaceName}-3000.app.github.dev`;
-} else if (CURRENT_HOST.includes("github.io") || CURRENT_HOST.includes("gmaiviet.github.io")) {
-    // 2. Nếu chạy chính thức trên GitHub Pages (như trên thiết bị di động của bạn)
-    // HÃY ĐẢM BẢO URL DƯỚI ĐÂY KHỚP VỚI ĐƯỜNG LINK BACKEND CODESPACES ĐANG HOẠT ĐỘNG CỦA BẠN
-    API_URL = "https://voduongmaiviet-github-io-1.onrender.com";
+} else {
+    // 3. Khi chạy chính thức trên Netlify (hoặc các tên miền khác)
+    // Tự động sử dụng đường dẫn tương đối để gọi hàm Serverless trên Netlify
+    API_URL = "/api"; 
 }
 
 console.log("Cấu hình API kết nối tới mục tiêu:", API_URL);
@@ -53,6 +56,7 @@ async function generatePaymentQR() {
             didOpen: () => Swal.showLoading()
         });
 
+        // Gọi trực tiếp đến API trên Netlify (hoặc môi trường đang chạy)
         const response = await fetch(`${API_URL}/create-payment-link`, {
             method: "POST",
             headers: {
@@ -61,7 +65,7 @@ async function generatePaymentQR() {
             body: JSON.stringify({
                 amount: Number(amount),
                 description: memo
-            })
+            }
         });
 
         const result = await response.json();
@@ -105,7 +109,7 @@ async function generatePaymentQR() {
         Swal.fire({
             icon: "error",
             title: "Lỗi kết nối",
-            text: "Không thể gọi tới máy chủ API. Vui lòng kiểm tra tab PORTS đã chuyển sang chế độ 'Public' chưa?"
+            text: "Không thể kết nối tới máy chủ API trên Netlify. Vui lòng kiểm tra lại cấu hình hàm hoặc biến môi trường."
         });
     }
 }
