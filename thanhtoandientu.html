@@ -23,7 +23,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             text-align: center;
-            max-width: 460px;
+            max-width: 460px; /* Tăng nhẹ độ rộng để nội dung dài không bị xuống dòng xấu */
             width: 100%;
         }
         .input-group {
@@ -114,32 +114,28 @@
             padding: 12px;
             font-size: 16px;
             font-weight: bold;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.5px; /* Giảm độ rộng khoảng cách chữ một chút để vừa chuỗi dài */
             color: #b78103;
             border-radius: 6px;
             margin: 5px 0 15px 0;
             display: inline-block;
             width: 100%;
             box-sizing: border-box;
-            word-wrap: break-word;
+            word-wrap: break-word; /* Tự động xuống dòng nếu chuỗi quá dài, không lo bị khuất */
         }
         .status {
             margin-top: 15px;
             font-size: 14px;
             color: #0288d1;
             font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
         .spinner {
             width: 16px;
             height: 16px;
             border: 2px solid #e0f2f1;
-            border-top: 2px solid #0288d1;
+            border-top: 2px solid #0288d1; /* Màu của vòng xoay trùng màu chữ */
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite; /* Xoay vô hạn */
             display: inline-block;
         }
         @keyframes spin {
@@ -210,11 +206,11 @@
         
         <div class="status" id="statusText">
             <div class="spinner"></div>
-            <span id="labelText">Hệ thống đang chờ bạn quét mã chuyển khoản...</span>
+            <span>Hệ thống đang chờ bạn quét mã chuyển khoản...</span>
         </div>
         
-        <button onclick="triggerMockSuccess()" style="margin-top:20px; padding:10px 15px; border:none; background:#ccc; color:#333; border-radius:4px; cursor:pointer; width: 100%; font-weight: bold; font-size: 12px;">
-            [Nút Test] Click để thử nghiệm chuyển trang nhanh không cần quét tiền thật
+        <button onclick="triggerMockSuccess()" style="margin-top:20px; padding:10px 15px; border:none; background:#4caf50; color:white; border-radius:4px; cursor:pointer; width: 100%; font-weight: bold;">
+            Chuyển khoản thành công ấn vào đây
         </button>
     </div>
 
