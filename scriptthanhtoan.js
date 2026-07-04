@@ -1,149 +1,76 @@
-const CURRENT_HOST = window.location.hostname;
-let API_URL = ""; 
+    const bankConfig = {
+        bankId: "agribank",          
+        accountNo: "5504215009186", 
+        accountName: "MAI VAN VIET" 
+    };
 
-// CẤU HÌNH TỰ ĐỘNG PHÂN LUỒNG CHO NETLIFY, CODESPACES VÀ LOCALHOST
-if (CURRENT_HOST.includes("localhost") || CURRENT_HOST.includes("127.0.0.1")) {
-    // 1. Nếu chạy ở máy cá nhân offline
-    API_URL = "http://localhost:3000"; 
-} else if (CURRENT_HOST.includes("github.dev")) {
-    // 2. Nếu bạn đang xem trước (Preview) ứng dụng ngay trong Codespaces
-    const workspaceName = CURRENT_HOST.replace(".github.dev", "");
-    API_URL = `https://${workspaceName}-3000.app.github.dev`;
-} else {
-    // 3. Khi chạy chính thức trên Netlify (hoặc các tên miền khác)
-    // Tự động sử dụng đường dẫn tương đối để gọi hàm Serverless trên Netlify
-    API_URL = "/api"; 
-}
+    let checkInterval; 
 
-console.log("Cấu hình API kết nối tới mục tiêu:", API_URL);
-
-let currentOrderCode = null;
-let checkInterval = null;
-
-function removeSign(str) {
-    return str
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/đ/g, "d")
-        .replace(/Đ/g, "D")
-        .toUpperCase()
-        .replace(/\s+/g, " ")
-        .trim();
-}
-
-async function generatePaymentQR() {
-    const rawName = document.getElementById("studentName").value.trim();
-    const rawContent = document.getElementById("paymentContent").value.trim();
-    const amount = document.getElementById("tuitionAmount").value.trim();
-
-    if (!rawName || !rawContent || !amount) {
-        Swal.fire({
-            icon: "warning",
-            title: "Thiếu thông tin",
-            text: "Vui lòng nhập đầy đủ thông tin."
-        });
-        return;
+    function removeSign(str) {
+        str = str.toUpperCase();
+        str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ấ|Ặ|Ẳ|Ẵ/g, "A");
+        str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+        str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, "I");
+        str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+        str = str.replace(/Ù|Ú|Ụ|Ủ|Ã|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+        str = str.replace(/Ỳ|Ý|Y|Ỷ|Ỹ/g, "Y");
+        str = str.replace(/Đ/g, "D");
+        str = str.replace(/[^A-Z0-9 ]/g, ""); 
+        return str;
     }
 
-    const memo = `${removeSign(rawName)} ${removeSign(rawContent)}`
-        .substring(0, 25)
-        .trim();
+    function generatePaymentQR() {
+        let rawName = document.getElementById('studentName').value.trim();
+        let rawContent = document.getElementById('paymentContent').value.trim();
+        let amount = document.getElementById('tuitionAmount').value.trim();
 
-    try {
-        Swal.fire({
-            title: "Đang tạo mã QR...",
-            allowOutsideClick: false,
-            didOpen: () => Swal.showLoading()
-        });
-
-        // Gọi trực tiếp đến API trên Netlify (hoặc môi trường đang chạy)
-        const response = await fetch(`${API_URL}/create-payment-link`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                amount: Number(amount),
-                description: memo
-            }
-        });
-
-        const result = await response.json();
-        Swal.close();
-        console.log(result);
-
-        if (!result.success) {
-            throw new Error(result.message || result.error);
-        }
-
-        currentOrderCode = result.orderCode;
-
-        document.getElementById("inputForm").style.display = "none";
-        document.getElementById("qrSection").style.display = "block";
-
-        document.getElementById("displayAmount").innerText =
-            Number(amount).toLocaleString("vi-VN") + " đ";
-
-        document.getElementById("orderMemo").innerText = memo;
-        document.getElementById("successStudentInfo").innerText = rawName;
-
-        if (result.qrCode) {
-            document.getElementById("qrImage").src = result.qrCode;
-        } else if (result.data && result.data.qrCode) {
-            document.getElementById("qrImage").src = result.data.qrCode;
-        } else {
+        if (!rawName || !rawContent || !amount) {
             Swal.fire({
-                icon: "error",
-                title: "Không nhận được QR từ PayOS"
+                icon: "warning",
+                title: "Chú ý!",
+                text: "Vui lòng điền đầy đủ tất cả các trường thông tin!",
+                confirmButtonColor: "#0288d1"
             });
             return;
         }
 
-        document.getElementById("labelText").innerText = "Đang chờ thanh toán...";
-        clearInterval(checkInterval);
-        checkInterval = setInterval(verifyPaymentRealTime, 2000);
+        let cleanName = removeSign(rawName).replace(/\s+/g, " "); 
+        let cleanContent = removeSign(rawContent).replace(/\s+/g, " ");
 
-    } catch (err) {
-        console.error(err);
-        Swal.close();
+        // SỬA ĐỔI CHÍNH: Xóa bỏ hoàn toàn lệnh .substring() để lấy trọn vẹn độ dài chuỗi ký tự bạn nhập vào.
+        const currentMemo = `${cleanName} ${cleanContent}`.trim(); 
+
+        document.getElementById('displayAmount').innerText = parseInt(amount).toLocaleString('vi-VN') + " đ";
+        document.getElementById('orderMemo').innerText = currentMemo;
+
+        const qrUrl = `https://img.vietqr.io/image/${bankConfig.bankId}-${bankConfig.accountNo}-qr_only.jpg?amount=${amount}&addInfo=${encodeURIComponent(currentMemo)}&accountName=${encodeURIComponent(bankConfig.accountName)}`;
+        
+        document.getElementById('qrImage').src = qrUrl;
+
+        document.getElementById('inputForm').style.display = 'none';
+        document.getElementById('qrSection').style.display = 'block';
+
+        document.getElementById('successStudentInfo').innerText = `${cleanName} (${cleanContent})`;
+
+        checkInterval = setInterval(() => {
+            console.log(`Đang quét tài khoản tìm nội dung: [${currentMemo}] với số tiền: ${amount}đ...`);
+        }, 3000);
+    }
+
+    function triggerMockSuccess() {
         Swal.fire({
-            icon: "error",
-            title: "Lỗi kết nối",
-            text: "Không thể kết nối tới máy chủ API trên Netlify. Vui lòng kiểm tra lại cấu hình hàm hoặc biến môi trường."
+            icon: "success",
+            title: "Thành công!",
+            text: "Hệ thống đã nhận được tiền thanh toán đơn hàng.",
+            timer: 2500,
+            showConfirmButton: false
+        }).then(() => {
+            mockPaymentSuccess();
         });
     }
-}
 
-async function verifyPaymentRealTime() {
-    if (!currentOrderCode) return;
-
-    try {
-        const response = await fetch(`${API_URL}/check-order/${currentOrderCode}`);
-        const result = await response.json();
-        console.log(result);
-
-        if (result.success && result.status === "PAID") {
-            showSuccessNotification();
-        }
-    } catch (err) {
-        console.log(err);
+    function mockPaymentSuccess() {
+        clearInterval(checkInterval);
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
     }
-}
-
-function showSuccessNotification() {
-    clearInterval(checkInterval);
-    Swal.fire({
-        icon: "success",
-        title: "Thanh toán thành công",
-        text: "Hệ thống đã nhận được giao dịch.",
-        timer: 2500,
-        showConfirmButton: false
-    }).then(() => {
-        document.getElementById("qrSection").style.display = "none";
-        document.getElementById("successBox").style.display = "block";
-    });
-}
-
-function triggerMockSuccess() {
-    showSuccessNotification();
-}
