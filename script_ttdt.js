@@ -1,5 +1,5 @@
 const CURRENT_HOST = window.location.hostname;
-let API_URL = "https://bug-free-dollop-qp94g7w9jg624gx9-3000.app.github.dev";
+let API_URL = "https://jubilant-xylophone-6vgpjrvp54x7f46rx-3000.app.github.dev/thanhtoandientu.html";
 
 if (CURRENT_HOST.includes("localhost") || CURRENT_HOST.includes("127.0.0.1")) {
     API_URL = "http://localhost:3000"; 
@@ -8,7 +8,7 @@ if (CURRENT_HOST.includes("localhost") || CURRENT_HOST.includes("127.0.0.1")) {
     API_URL = window.location.origin;
 } else {
     // KHI CHẠY TRÊN GITHUB PAGES: Link endpoint backend Codespace của bạn
-    API_URL = "https://bug-free-dollop-qp94g7w9jg624gx9-3000.app.github.dev";
+    API_URL = "https://jubilant-xylophone-6vgpjrvp54x7f46rx-3000.app.github.dev/thanhtoandientu.html";
 }
 
 console.log("Cấu hình API kết nối tới mục tiêu:", API_URL);
