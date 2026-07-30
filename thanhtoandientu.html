@@ -32,23 +32,23 @@
         }
         .input-group label {
             display: block;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             margin-bottom: 5px;
-            color: #333;
+            color: #000000;
         }
         .input-group input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 15px;
+            font-size: 16px;
             box-sizing: border-box;
         }
         .btn-submit {
             width: 100%;
             padding: 12px;
-            background-color: #0288d1;
+            background-color: #006233;
             color: white;
             border: none;
             border-radius: 6px;
@@ -154,14 +154,18 @@
             height: 64px;
             fill: #4caf50;
         }
+        h3{
+            color: red;
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
 
 <div class="payment-container">
     <div id="inputForm">
-        <h3>Thanh Toán Điện Tử</h3>
-        <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Vui lòng nhập thông tin để tạo mã QR thanh toán.</p>
+        <h3>THANH TOÁN ĐIỆN TỬ</h3>
+        <p style="font-size: 14px; color: #006233; margin-bottom: 20px;">Vui lòng nhập thông tin để tạo mã QR.</p>
 
         <div class="input-group">
             <label for="studentName">Họ và tên võ sinh:</label>
@@ -182,8 +186,8 @@
     </div>
 
     <div id="qrSection" class="qr-section">
-        <h3>Quét Mã QR Để Thanh Toán</h3>
-        <p style="font-size: 14px; color: #777;">Hệ thống MB Bank tự động kiểm tra sau khi bạn chuyển khoản thành công.</p>
+        <h3>QUÉT MÃ QR ĐỂ THANH TOÁN</h3>
+        <p style="font-size: 14px; color: #777;">Hệ thống MB Bank tự động kiểm tra khi bạn chuyển khoản thành công.</p>
 
         <img class="qr-code" id="qrImage" src="" alt="Đang tải mã QR..." onerror="this.alt='Lỗi tải cấu hình QR, vui lòng kiểm tra lại API!'">
 
@@ -211,7 +215,11 @@
             <div class="spinner"></div>
             <span id="labelText">Hệ thống đang chờ bạn quét mã chuyển khoản...</span>
         </div>
-        
+<!--
+        <button id="testServerPay" style="margin-top:20px; padding:10px 15px; border:none; background:#ccc; color:#333; border-radius:4px; cursor:pointer; width: 100%; font-weight: bold; font-size: 12px;">
+            Click để thử nghiệm thanh toán (client-side)
+        </button>
+-->
     </div>
 
     <div id="successBox" class="success-box">
