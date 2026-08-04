@@ -6,128 +6,172 @@
     <title>Mai Việt Taekwondo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
-        body { font-family: 'Lexend', sans-serif; background-color: #f8fafc; }
-        .active-menu { background: #dc2626 !important; color: white !important; font-weight: 700; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
+        body { font-family: 'Lexend', sans-serif; background-color: #f8fafc; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
         .sidebar { background-color: #0f172a; transition: all 0.3s ease; }
+        
+        /* HIỆU ỨNG MÀU ĐỎ CHẠY KHI DI CHUỘT (Áp dụng cho tất cả các menu) */
+        nav a {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Tạo lớp phủ màu đỏ chạy từ trái sang phải khi hover */
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), #dc2626);
+            transition: left 0.4s ease-in-out;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            transform: translateX(6px);
+            background-color: rgba(220, 38, 38, 0.15);
+        }
+
+        nav a:hover i {
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+            color: #ef4444;
+        }
+
+        /* Footer Style */
+        .footer-custom {
+            background-color: #0b1329;
+            color: #94a3b8;
+            padding: 2.5rem 1rem;
+            text-align: center;
+        }
+        .footer-custom h3 {
+            color: #fbbf24;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-custom p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .footer-links a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-links a:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+        .footer-copy {
+            font-size: 0.8rem;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
+            padding-top: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* HIỆU ỨNG HOVER CHO KHUNG ẢNH VÀ HÌNH ẢNH */
+        .news-box {
+            max-width: 100%;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+        .news-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
+        }
+        .news-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .news-box:hover .news-img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="text-slate-800">
 
-    <div id="login-box" class="min-h-screen flex items-center justify-center p-4 bg-slate-100">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
-            <div class="p-8 text-center bg-slate-900 text-white">
-                <h1 class="text-2xl font-bold tracking-tighter text-red-500 uppercase">Mai Việt Taekwondo</h1>
-                <p class="text-slate-400 text-xs mt-1">Cổng thông tin võ sinh trực tuyến</p>
-            </div>
-            <div class="p-8 space-y-5">
-                <div>
-                    <label class="text-xs font-bold text-slate-500 uppercase ml-1">Tên đăng nhập</label>
-                    <input type="text" id="u" onkeydown="if(event.key === 'Enter') login()" class="w-full mt-1 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500 transition" placeholder="Nhập tên đăng nhập">
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold text-slate-500 uppercase ml-1">Mật khẩu</label>
-                    <div class="relative">
-                        <input type="password" id="p" onkeydown="if(event.key === 'Enter') login()" class="w-full mt-1 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500 transition pr-12" placeholder="Nhập mật khẩu">
-                        <button type="button" onclick="togglePassword()" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500 transition">
-                            <i id="eye-icon" class="fas fa-eye"></i>
-                        </button>
+    <!-- GIAO DIỆN CHỈ CÒN MENU BÊN TRÁI -->
+    <div id="main-app" class="flex-1 flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <aside class="sidebar w-full lg:w-72 text-slate-300 lg:min-h-screen p-6 flex flex-col justify-between">
+           <div>
+                <div class="mb-10 flex items-center space-x-3 px-2">
+                    <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center font-bold text-white italic shadow-lg">MV</div>
+                    <div>
+                        <h2 class="font-bold text-white tracking-tight uppercase leading-none">Mai Việt TKD</h2>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest uppercase">HỆ THỐNG TRỰC TUYẾN</span>
                     </div>
                 </div>
 
-                <button onclick="login()" class="w-full bg-red-600 text-white py-3 rounded-xl font-bold text-lg hover:bg-red-700 shadow-lg shadow-red-200 transition-all active:scale-95">ĐĂNG NHẬP</button>
+                <nav class="space-y-2">
+                    <a href="loginvoduong.html" class="w-full text-left p-4 rounded-xl flex items-center">
+                        <i class="fas fa-sign-in-alt w-8 text-lg"></i> ĐĂNG NHẬP VÕ ĐƯỜNG
+                    </a>
+                    <a href="https://voduongmaiviet.github.io/tintuc/" class="w-full text-left p-4 rounded-xl flex items-center">
+                        <i class="fas fa-newspaper w-8 text-lg"></i> TIN TỨC VÕ ĐƯỜNG
+                    </a>
+                    <a href="https://voduongmaiviet.github.io/diemdanh/" class="w-full text-left p-4 rounded-xl flex items-center">
+                        <i class="fas fa-clipboard-user w-8 text-lg"></i> ĐIỂM DANH VÕ ĐƯỜNG
+                    </a>
+                    <a href="dangky.html" class="w-full text-left p-4 rounded-xl flex items-center">
+                        <i class="fas fa-user-plus w-8 text-lg"></i> ĐĂNG KÝ THÀNH VIÊN
+                    </a>
+                </nav>
             </div>
-
-            <div class="text-center mb-4">
-                <p class="text-slate-500 text-sm">
-                    <a href="thanhtoandientu.html" class="text-red-600 font-bold hover:underline">CHUYỂN KHOẢN</a>
-                </p>
-            </div>
-
-            <div class="text-center mb-4">
-                <p class="text-slate-500 text-sm">Chưa có tài khoản? 
-                    <a href="dangky.html" class="text-red-600 font-bold hover:underline">ĐĂNG KÝ NGAY</a>
-                </p>
-            </div>
-
-            <div class="p-6 border-t border-slate-100 bg-slate-50/50 text-xs text-slate-500 space-y-1">
-              <span class="font-bold text-red-600 block mb-2"><i class="bi bi-lightbulb"></i> Hướng dẫn đăng nhập:</span>
-              <p><b>Tên đăng nhập:</b> Họ tên viết liền không dấu (Ví dụ: lethanhloi)</p>
-              <p><b>Mật khẩu:</b> Ngày sinh + Họ tên viết tắt (Ví dụ: 15032010ltl)</p>
-              <small class="d-block mt-2">* Viết liền, không khoảng cách, không dấu.</small>
-            </div>
-        </div>
-    </div>
-
-    <div id="main-app" class="hidden min-h-screen flex flex-col lg:flex-row w-full overflow-x-hidden">
-        <aside class="sidebar w-full lg:w-72 lg:flex-shrink-0 text-slate-300 lg:min-h-screen p-6 flex flex-col">
-            <div class="mb-10 flex items-center space-x-3 px-2">
-                <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center font-bold text-white italic">MV</div>
-                <div>
-                    <h2 class="font-bold text-white tracking-tight uppercase leading-none">Mai Việt TKD</h2>
-                    <span id="user-role" class="text-[10px] text-red-500 font-bold tracking-widest uppercase"></span>
-                </div>
-            </div>
-
-            <nav class="space-y-1 flex-1">
-                <button onclick="load('LICHHOC', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
-                    <i class="fas fa-calendar-alt w-8 text-lg"></i> LỊCH HỌC
-                </button>
-                <button onclick="load('HOCPHI', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
-                    <i class="fas fa-wallet w-8 text-lg"></i> HỌC PHÍ
-                </button>
-                <button onclick="load('DONDANGKY', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
-                    <i class="fas fa-file-alt w-8 text-lg"></i> ĐƠN ĐĂNG KÝ
-                </button>
-                <button onclick="load('DON', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
-                    <i class="fas fa-paper-plane w-8 text-lg"></i> ĐƠN XIN PHÉP
-                </button>
-                <button onclick="load('CAPDAI', this)" class="menu-btn w-full text-left p-4 rounded-xl hover:bg-slate-800 transition flex items-center">
-                    <i class="fas fa-award w-8 text-lg"></i> CẤP ĐAI
-                </button>
-            </nav>
-
-            <div class="pt-6 border-t border-slate-800 mt-6 space-y-3">
-                <div class="px-4 py-3 bg-slate-800/50 rounded-2xl">
-                    <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Đang đăng nhập</div>
-                    <div id="user-fullname" class="text-white font-bold truncate"></div>
-                </div>
-                <button onclick="changePass()" class="w-full text-left p-4 rounded-xl text-yellow-500 hover:bg-yellow-500/10 transition flex items-center">
-                    <i class="fas fa-key w-8"></i> ĐỔI MẬT KHẨU
-                </button>
-                <button onclick="localStorage.removeItem('mv_user_data'); location.reload();" class="w-full text-left p-4 rounded-xl text-red-400 hover:bg-red-400/10 transition flex items-center">
-                    <i class="fas fa-sign-out-alt w-8"></i> ĐĂNG XUẤT
-                </button>
-            </div>
-<!--
-            <div class="pt-6 border-t border-slate-800 mt-6 space-y-3">
-                <div class="px-4 py-3 bg-slate-800/50 rounded-2xl">
-                    <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Đang đăng nhập</div>
-                    <div id="user-fullname" class="text-white font-bold truncate"></div>
-                </div>
-                <button onclick="Swal.fire('Tính năng', 'Chức năng đổi mật khẩu đang được tích hợp!', 'info')" class="w-full text-left p-4 rounded-xl text-yellow-500 hover:bg-yellow-500/10 transition flex items-center">
-                    <i class="fas fa-key w-8"></i> ĐỔI MẬT KHẨU
-                </button>
-                <button onclick="localStorage.removeItem('mv_user_data'); location.reload();" class="w-full text-left p-4 rounded-xl text-red-400 hover:bg-red-400/10 transition flex items-center">
-                    <i class="fas fa-sign-out-alt w-8"></i> ĐĂNG XUẤT
-                </button>
-            </div>
--->
         </aside>
 
-        <main class="flex-1 p-6 lg:p-10 min-w-0 w-full overflow-hidden">
-            <div id="content-view" class="bg-white rounded-[2rem] shadow-sm p-8 min-h-full border border-slate-100">
-                </div>
+        <!-- Phần thân giữa có chứa hình ảnh võ đường với hiệu ứng hover -->
+        <main class="flex-1 p-6 lg:p-10 bg-slate-50 flex items-center justify-center">
+            <div class="news-box w-full max-w-4xl">
+                <img src="https://lh3.googleusercontent.com/d/1pwLkpvSO1rrfgLMYFktd2oKuucHyq3gF" alt="Ảnh võ đường" class="news-img">
+            </div>
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <!-- FOOTER PHÍA DƯỚI -->
+    <footer class="footer-custom">
+        <h3>MAI VIỆT TAEKWONDO</h3>
+        <p>Địa chỉ: Nhà văn hoá ấp Sân Bay, Xã Dầu Tiếng, TP Hồ Chí Minh</p>
+        <p>Hotline: 0937 551 868</p>
+        <div class="footer-links">
+            <a href="#" target="_blank">Võ đường Mai Việt</a>
+            <a href="#" target="_blank">YouTube</a>
+            <a href="#" target="_blank">Zalo: 0937551868</a>
+        </div>
+        <div class="footer-copy">
+            © 2026 Mai Việt Taekwondo. All rights reserved.
+        </div>
+    </footer>
+
 </body>
 </html>
