@@ -300,6 +300,15 @@
             letter-spacing: 1.5px;
         }
 
+        /* --- BỔ SUNG CSS CANH CHỈNH JUSTIFY --- */
+        .presentation-section p, 
+        .quote-box p, 
+        .conclusion p, 
+        .card-desc {
+            text-align: justify;
+            text-justify: inter-word; /* Giúp giãn chữ đều và đẹp hơn trên các trình duyệt */
+        }
+
         /* Mobile Optimization */
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.5rem; }
