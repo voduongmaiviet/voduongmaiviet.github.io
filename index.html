@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mai Việt Taekwondo</title>
+    <title>Hệ Thống Quản Lý</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -116,6 +116,196 @@
         .news-box:hover .news-img {
             transform: scale(1.05);
         }
+
+        /* --- CSS BỔ SUNG TỪ THUYẾT TRÌNH --- */
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --accent-color: #ef4444;
+            --accent-glow: rgba(239, 68, 68, 0.15);
+            --text-main: #e6edf3;
+            --text-muted: #9ca3af;
+            --border-color: #30363d;
+        }
+
+        .presentation-container {
+            width: 100%;
+            color: var(--text-main);
+        }
+
+        /* Banner Header */
+        .hero {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--accent-glow);
+            color: #f87171;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Callout / Opening */
+        .quote-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 28px;
+        }
+
+        .quote-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .highlight-text {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        /* Content Sections */
+        .presentation-section {
+            margin-bottom: 32px;
+        }
+
+        .presentation-section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 14px;
+            padding-left: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .presentation-section p, .quote-box p {
+            color: #c9d1d9;
+            margin-bottom: 14px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .quote-callout {
+            background: var(--accent-glow);
+            border-left: 3px solid var(--accent-color);
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-style: italic;
+            color: #fca5a5;
+        }
+
+        /* Age Group Cards Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f87171;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Conclusion Footer */
+        .conclusion {
+            background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%);
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 28px 20px;
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .conclusion h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .conclusion p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 16px auto;
+            line-height: 1.7;
+        }
+
+        .footer-thank {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.5rem; }
+            .presentation-section h2 { font-size: 1.2rem; }
+            .hero, .quote-box, .conclusion { padding: 18px; }
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -153,10 +343,82 @@
             </div>
         </aside>
 
-        <!-- Phần thân giữa có chứa hình ảnh võ đường với hiệu ứng hover -->
-        <main class="flex-1 p-6 lg:p-10 bg-slate-50 flex items-center justify-center">
+        <!-- Phần thân giữa chứa hình ảnh võ đường và bài thuyết trình -->
+        <main class="flex-1 p-6 lg:p-10 bg-slate-900 flex flex-col items-center justify-start space-y-8">
+            <!-- Hình ảnh võ đường -->
             <div class="news-box w-full max-w-4xl">
                 <img src="https://lh3.googleusercontent.com/d/1pwLkpvSO1rrfgLMYFktd2oKuucHyq3gF" alt="Ảnh võ đường" class="news-img">
+            </div>
+
+            <!-- Bài Thuyết Trình -->
+            <div class="presentation-container max-w-4xl">
+                <div class="hero">
+                    <span class="hero-tag">Bài Viết Về Võ Thuật</span>
+                    <h1>SỨC MẠNH CỦA VÕ THUẬT VÀ THỂ THAO</h1>
+                    <p class="subtitle">Hành trình chữa lành, rèn luyện bản thân và kết nối mọi thế hệ</p>
+                </div>
+
+                <div class="quote-box">
+                    <span class="quote-title">Kính chào tất cả quý vị.</span>
+                    <p>
+                        Khi nhìn vào cuộc sống hối hả ngày hôm nay, đã bao giờ bạn tự hỏi: <span class="highlight-text">"Điều gì thực sự nâng đỡ chúng ta qua những dông bão của cuộc sống?"</span><br><br>
+                        Chúng ta mải mê đuổi theo những mục tiêu sự nghiệp, những lo toan cơm áo gạo tiền, để rồi đôi khi quên mất chiếc vỏ bọc duy nhất giúp ta đi hết chặng đường này — đó chính là cơ thể và tâm trí của chính mình. Thể thao nói chung, và võ thuật nói riêng, không đơn thuần là những bài tập thể chất. Mà đó là một hành trình chữa lành, một môi trường rèn luyện THÂN và TÂM, một trường học cuộc đời đầy khó khăn và thử thách. Qua võ thuật chúng ta rèn luyện TINH - KHÍ - THẦN  và đó là món quà vô giá mà bất kỳ ai trong chúng ta cũng đều xứng đáng được nhận miễn là chúng ta bắt đầu, bước đi và không bao giờ bỏ cuộc. Không có con đường mang tên THÀNH CÔNG mà THÀNH CÔNG vốn là con đường.
+                    </p>
+                </div>
+
+                <div class="presentation-section">
+                    <h2>1. Võ thuật - Thể thao — Hơi thở của sự sống và niềm vui kết nối</h2>
+                    <p>
+                        Hãy nhớ lại cảm xúc khi bạn chinh phục được một cấp đai, một chặng đường chạy, khi cú sút tung lưới đối phương, hay đơn giản là cảm giác mồ hôi rơi sau một giờ tập luyện. Võ thuật - Thể thao dạy chúng ta biết lắng nghe cơ thể. Biết cảm nhận: THÂN - THỌ - TÂM - PHÁP. Võ thuật - Thể thao trả lại cho chúng ta sự thuần khiết của niềm vui, xua tan những âu lo thường ngày và kéo con người lại gần nhau hơn.
+                    </p>
+                    <div class="quote-callout">
+                        "Qua từng nhịp thở, từng giọt mồ hôi, võ thuật - thể thao chứng minh rằng: Mỗi ngày chúng ta còn vận động, là mỗi ngày chúng ta còn đang thực sự sống."
+                    </div>
+                </div>
+
+                <div class="presentation-section">
+                    <h2>2. Võ thuật — Bản hùng ca của sự kiên cường và lòng tôn trọng</h2>
+                    <p>
+                        Nếu thể thao mang lại sự dẻo dai, thì võ thuật chính là một ngọn lửa rèn đúc nên bản lĩnh. Người ta thường nghĩ võ thuật là đấm, là đá, là va chạm. Nhưng những ai từng bước chân vào võ đường đều hiểu rằng: <span class="highlight-text">Bài học đầu tiên của võ thuật là cúi đầu chào, và bài học cuối cùng là sự bao dung.</span>
+                    </p>
+                    <p>
+                        Võ thuật không dạy chúng ta chiến thắng người khác, mà dạy chúng ta chiến thắng chính mình — chiến thắng sự lười biếng, sự sợ hãi và những ngông cuồng của cái tôi.
+                    </p>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <span class="card-icon">🥊</span>
+                            <span class="card-title">Dành cho Trẻ Em</span>
+                            <p class="card-desc">
+                                Võ thuật cho các con môi trường rèn luyện tính kỷ luật, sự tự tin và lòng tự trọng. Đứa trẻ nhút nhát học cách đứng thẳng lưng; đứa trẻ hiếu động học cách kiểm soát cảm xúc và biết tôn trọng mọi người. Giúp các con phát triển chiều ao, trí não, thân thể và giúp các con cân bằng các loại hormone: dopamin, endorphin, serotonin, melatonin, oxytocin, insulin, testosterone, và nhiều miễn dịch cơ thể.
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <span class="card-icon">⚡</span>
+                            <span class="card-title">Người Trưởng Thành</span>
+                            <p class="card-desc">
+                                Giữa áp lực công việc, mỗi giờ trên thảm tập là lúc trút bỏ muộn phiền. Võ thuật mang lại sự tập trung cao độ, dạy cho chúng ta cách đón nhận một "cú đấm" của cuộc đời mà không gục ngã.
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <span class="card-icon">☯️</span>
+                            <span class="card-title">Người Cao Tuổi</span>
+                            <p class="card-desc">
+                                Những đường quyền nhẹ nhàng như dòng nước chảy mềm mại giúp giữ gìn sự linh hoạt cho xương khớp, mang lại tinh thần minh mẫn. Sức mạnh nằm ở ý chí không bao giờ lão hóa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3>Võ thuật không có giới hạn về tuổi tác!</h3>
+                    <p>
+                        Đừng chờ đến khi cơ thể lên tiếng mới bắt đầu chăm sóc. Hãy đứng dậy, vận động, và trải nghiệm sự kỳ diệu mà võ thuật - thể thao mang lại. Hãy tập luyện không phải vì muốn đánh bại ai đó, mà vì một phiên bản khỏe mạnh hơn, kiên cường hơn và hạnh phúc hơn của chính bản thân mình vào ngày mai!
+                    </p>
+                    <div class="footer-thank">Xin trân trọng cảm ơn!</div>
+                </div>
             </div>
         </main>
     </div>
